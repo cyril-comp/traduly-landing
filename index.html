@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#022C22">
 <title>Traduly — Le journal de trading qui travaille pour toi</title>
 <meta name="description" content="Traduly importe automatiquement tes trades MT4/MT5. Analyse ta performance, maîtrise ta psychologie, progresse enfin.">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -193,7 +194,7 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,0.06)}
 .dash-name{font-size:13px;font-weight:600;color:var(--g700)}
 
 .dash-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-.dash-stat{background:var(--g50);border-radius:14px;padding:16px}
+.dash-stat{background:#F3F4F6;border:1px solid #D1D5DB;border-radius:14px;padding:16px}
 .dash-stat-label{font-size:10px;font-weight:600;color:var(--g500);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
 .dash-stat-val{font-family:'Outfit',sans-serif;font-size:28px;font-weight:800;letter-spacing:-0.03em;color:var(--black)}
 .dash-stat-change{font-size:11px;font-weight:600;margin-top:4px}
@@ -422,7 +423,8 @@ footer{background:var(--black);padding:48px 5% 32px}
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr;gap:48px}
-  .hero-right{display:none}
+  .hero-right{display:flex;justify-content:center}
+  .hero-right .dashboard-card{max-width:360px;width:100%}
   .stats-inner{grid-template-columns:repeat(2,1fr)}
   .problems-grid,.features-grid,.testi-grid{grid-template-columns:1fr}
   .solution-grid{grid-template-columns:1fr}
