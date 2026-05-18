@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informations Légales — Traduly</title>
+  <meta name="description" content="Conditions générales d'utilisation, politique de confidentialité, remboursement et avertissement financier de Traduly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --g:#16a34a;--gl:#34d399;--gd:#059669;--gbg:#f0fdf4;
+      --tx:#0f172a;--tx2:#475569;--tx3:#94a3b8;
+      --border:#e2e8f0;--bg:#fff;--bg2:#f8fafc;
+    }
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg2);color:var(--tx);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+    header{
+      background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      padding:0 6%;height:64px;display:flex;align-items:center;justify-content:space-between;
+      border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;
+    }
+    .logo{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+    .logo-t{font-family:'Outfit',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.04em;line-height:1}
+    .logo-t .w{color:var(--tx)}
+    .logo-t .g{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .back{font-size:13px;color:var(--tx3);text-decoration:none;font-weight:500;transition:color .2s}
+    .back:hover{color:var(--tx)}
+
+    .nav-tabs{background:var(--bg);border-bottom:1px solid var(--border);padding:0 6%;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .nav-tabs::-webkit-scrollbar{display:none}
+    .nav-tabs a{font-size:13px;font-weight:500;color:var(--tx3);text-decoration:none;white-space:nowrap;padding:14px 20px;border-bottom:2px solid transparent;transition:all .2s;display:block}
+    .nav-tabs a:hover{color:var(--g);border-bottom-color:rgba(22,163,74,.3)}
+    .nav-tabs a.active{color:var(--g);border-bottom-color:var(--g)}
+
+    .container{max-width:760px;margin:0 auto;padding:40px 24px 100px}
+    .card{background:var(--bg);border-radius:20px;padding:36px;margin-bottom:20px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.04)}
+
+    .section-tag{font-size:11px;font-weight:700;color:var(--g);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+    .section-title{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.03em;color:var(--tx);margin-bottom:4px}
+    .section-meta{font-size:12px;color:var(--tx3);margin-bottom:28px;font-weight:400}
+
+    h2{font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;letter-spacing:-0.01em;color:var(--tx);margin:28px 0 8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    h2:first-of-type{margin-top:0}
+    p{font-size:14px;color:var(--tx2);line-height:1.75;margin-bottom:10px}
+    p:last-child{margin-bottom:0}
+    ul{margin:8px 0 12px 0;list-style:none;display:flex;flex-direction:column;gap:6px}
+    li{font-size:14px;color:var(--tx2);line-height:1.65;display:flex;align-items:flex-start;gap:8px}
+    li::before{content:'—';color:var(--tx3);flex-shrink:0;margin-top:2px}
+    strong{color:var(--tx);font-weight:600}
+
+    .badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:.04em}
+    .badge.red{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
+    .badge.green{background:var(--gbg);color:var(--g);border:1px solid rgba(22,163,74,.2)}
+    .badge.blue{background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe}
+
+    .alert{background:#fffbeb;border:1px solid #f59e0b;border-left:4px solid #f59e0b;border-radius:12px;padding:16px 18px;margin:16px 0;font-size:13px;color:#78350f;line-height:1.65}
+    .alert.red{background:#fef2f2;border-color:#f87171;border-left-color:#dc2626;color:#7f1d1d}
+    .infobox{background:var(--gbg);border:1px solid rgba(22,163,74,.2);border-radius:12px;padding:16px 18px;margin:16px 0;font-size:13px;color:#374151;line-height:1.65}
+    .infobox a{color:var(--g);font-weight:600;text-decoration:none}
+
+    footer{background:var(--tx);padding:32px 6%;text-align:center}
+    .footer-logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.04em;margin-bottom:8px;display:inline-flex;align-items:center;gap:7px}
+    .footer-logo .w{color:#fff}
+    .footer-logo .g{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .footer-info{font-size:12px;color:rgba(255,255,255,.35);line-height:2}
+    .footer-info a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+    .footer-info a:hover{color:#fff}
+
+    @media(max-width:600px){
+      .card{padding:22px 16px;border-radius:16px}
+      .container{padding:24px 14px 80px}
+      header{padding:0 5%}
+      .nav-tabs{padding:0 4%}
+      .nav-tabs a{padding:12px 12px;font-size:12px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#34d399"/>
+          <stop offset="100%" stop-color="#059669"/>
+        </linearGradient>
+      </defs>
+      <line x1="12" y1="1" x2="12" y2="5" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
+      <rect x="7" y="5" width="10" height="14" rx="2.5" fill="url(#cg)"/>
+      <rect x="9" y="7" width="3" height="4" rx="1" fill="rgba(255,255,255,0.22)"/>
+      <line x1="12" y1="19" x2="12" y2="23" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-t"><span class="w">Trad</span><span class="g">uly</span></span>
+  </a>
+  <a href="https://app.traduly.com" class="back">← Retour à l'app</a>
+</header>
+
+<div class="nav-tabs">
+  <a href="#cgu" class="active">Conditions d'utilisation</a>
+  <a href="#confidentialite">Confidentialité</a>
+  <a href="#remboursement">Remboursement</a>
+  <a href="#disclaimer">Avertissement financier</a>
+</div>
+
+<div class="container">
+
+  <!-- CGU -->
+  <div class="card" id="cgu">
+    <div class="section-tag">Conditions Générales d'Utilisation</div>
+    <div class="section-title">Règles d'utilisation de Traduly</div>
+    <div class="section-meta">Version 1.0 — Mai 2026 · contact@traduly.com</div>
+
+    <h2>Article 1 — Objet</h2>
+    <p>Traduly est une application web de journal de trading personnel à vocation éducative. Elle permet aux utilisateurs d'enregistrer, suivre et analyser leurs trades. Les présentes CGU définissent les règles d'utilisation de la plateforme accessible à app.traduly.com.</p>
+
+    <h2>Article 2 — Acceptation</h2>
+    <p>L'utilisation de Traduly implique l'acceptation pleine et entière des présentes CGU. En créant un compte, vous confirmez avoir lu, compris et accepté l'ensemble des dispositions ci-dessous.</p>
+
+    <h2>Article 3 — Âge minimum <span class="badge red">Important</span></h2>
+    <p>L'utilisation de Traduly est strictement réservée aux personnes âgées de <strong>18 ans ou plus</strong>. Lors de l'inscription, vous confirmez expressément avoir atteint l'âge légal en cochant la case prévue à cet effet.</p>
+    <p>Si Traduly constate qu'un compte appartient à une personne mineure, ce compte sera immédiatement suspendu et toutes les données associées supprimées, sans préavis ni remboursement. Traduly décline toute responsabilité en cas de fausse déclaration concernant l'âge.</p>
+
+    <h2>Article 4 — Accès au service</h2>
+    <p>Traduly propose deux niveaux d'accès :</p>
+    <ul>
+      <li><strong>Plan gratuit</strong> — journal illimité, suivi des émotions, dashboard basique, 1 challenge, 2 comptes, 3 stratégies. Sans limite de durée.</li>
+      <li><strong>Plan premium</strong> — import MT4/MT5, insights IA complets, rapport mensuel IA, export CSV, challenges illimités, comptes et stratégies illimités. Moyennant abonnement mensuel ou annuel.</li>
+    </ul>
+
+    <h2>Article 5 — Inscription et sécurité</h2>
+    <p>Pour utiliser Traduly vous devez créer un compte avec une adresse email valide et un mot de passe. Vous êtes seul responsable de la confidentialité de vos identifiants et de toute activité réalisée depuis votre compte. Toute utilisation frauduleuse doit être signalée immédiatement à contact@traduly.com.</p>
+
+    <h2>Article 6 — Obligations de l'utilisateur</h2>
+    <ul>
+      <li>Fournir des informations exactes et à jour lors de l'inscription</li>
+      <li>Ne pas utiliser l'application à des fins illégales ou frauduleuses</li>
+      <li>Ne pas tenter de pirater, contourner ou perturber le service</li>
+      <li>Ne pas revendre, louer ou redistribuer l'accès à votre compte</li>
+      <li>Ne pas utiliser des moyens automatisés pour extraire les données de la plateforme</li>
+      <li>Respecter les droits de propriété intellectuelle de Traduly</li>
+    </ul>
+
+    <h2>Article 7 — Nature éducative des analyses IA <span class="badge red">Critique</span></h2>
+    <p>Les analyses générées par l'intelligence artificielle de Traduly sont fournies <strong>exclusivement à des fins éducatives et de prise de conscience personnelle</strong>. Elles visent à aider le trader à mieux comprendre ses propres habitudes et biais psychologiques.</p>
+    <div class="alert red">
+      ⚠️ Les analyses IA de Traduly ne constituent en aucun cas des conseils financiers, des recommandations d'investissement, des signaux de trading, des prédictions de marché ou une stratégie certifiée. Traduly ne saurait être tenu responsable des décisions de trading prises sur la base de ces analyses. L'utilisateur est seul et entièrement responsable de ses décisions.
+    </div>
+
+    <h2>Article 8 — Propriété intellectuelle</h2>
+    <p>Traduly, son logo, son design, son code source et ses algorithmes sont la propriété exclusive de son éditeur. Toute reproduction, copie, modification ou utilisation commerciale sans autorisation écrite préalable est strictement interdite.</p>
+    <p>Les données saisies par l'utilisateur dans son journal lui appartiennent. Traduly ne revendique aucun droit de propriété sur le contenu personnel de l'utilisateur.</p>
+
+    <h2>Article 9 — Modification des tarifs</h2>
+    <p>Traduly se réserve le droit de modifier ses tarifs à tout moment. Tout changement sera communiqué par email avec un préavis minimum de <strong>30 jours</strong>. Les abonnements en cours ne seront pas affectés jusqu'à leur date de renouvellement.</p>
+
+    <h2>Article 10 — Disponibilité du service</h2>
+    <p>Traduly s'efforce d'assurer la disponibilité continue de la plateforme mais ne garantit pas une disponibilité de 100%. Des interruptions peuvent survenir pour raisons de maintenance, mises à jour ou incidents techniques. Aucune interruption de service, quelle que soit sa durée, ne donne droit à remboursement au-delà de la garantie de 7 jours prévue à l'article 2 de la politique de remboursement. Traduly ne saurait être tenu responsable des préjudices résultant d'une interruption de service.</p>
+
+    <h2>Article 11 — Force majeure</h2>
+    <p>Traduly ne pourra être tenu responsable de tout retard ou inexécution en cas de force majeure incluant sans s'y limiter : pannes d'infrastructure tierce, cyberattaques, catastrophes naturelles, pandémies, restrictions gouvernementales, ou toute autre cause indépendante de notre volonté.</p>
+
+    <h2>Article 12 — Liens externes</h2>
+    <p>Traduly peut contenir des liens vers des services tiers. Traduly n'est pas responsable du contenu ou des pratiques de ces services. Leur consultation se fait sous la seule responsabilité de l'utilisateur.</p>
+
+    <h2>Article 13 — Suspension et résiliation</h2>
+    <p>Traduly se réserve le droit de suspendre ou supprimer tout compte en cas de violation des présentes CGU, sans préavis ni remboursement. L'utilisateur peut supprimer son compte à tout moment directement depuis les paramètres de l'application.</p>
+
+    <h2>Article 14 — Communications</h2>
+    <p>En créant un compte, vous acceptez de recevoir des communications relatives au service. Vous pouvez vous désabonner à tout moment via le lien présent dans chaque email ou en contactant contact@traduly.com.</p>
+
+    <h2>Article 15 — Modification des CGU</h2>
+    <p>Traduly se réserve le droit de modifier les présentes CGU à tout moment. Les utilisateurs seront informés par email avec un préavis de 15 jours. La poursuite de l'utilisation après modification vaut acceptation des nouvelles conditions.</p>
+
+    <h2>Article 16 — Droit applicable</h2>
+    <p>Les présentes CGU sont régies par le droit ivoirien, notamment la loi n°2013-450. Tout litige relève de la compétence exclusive des tribunaux d'Abidjan, République de Côte d'Ivoire.</p>
+  </div>
+
+  <!-- CONFIDENTIALITÉ -->
+  <div class="card" id="confidentialite">
+    <div class="section-tag">Politique de Confidentialité</div>
+    <div class="section-title">Protection de vos données</div>
+    <div class="section-meta">Version 1.0 — Mai 2026 · contact@traduly.com</div>
+
+    <h2>Article 1 — Données collectées</h2>
+    <p><strong>Données d'inscription :</strong> Email, prénom, mot de passe chiffré.</p>
+    <p><strong>Données de trading :</strong> Toutes les informations saisies dans votre journal (paires, marchés, directions, résultats, pips, profits, état psychologique, plan de trading, session, notes et dates).</p>
+    <p><strong>Données de performance :</strong> Score de discipline, statistiques de trading, préférences de l'application.</p>
+    <p><strong>Données techniques :</strong> Adresse IP et type de navigateur, collectés automatiquement par notre infrastructure de sécurité.</p>
+
+    <h2>Article 2 — Finalité de la collecte</h2>
+    <ul>
+      <li>Vous permettre d'accéder à votre journal de trading personnel</li>
+      <li>Générer vos statistiques et analyses à des fins éducatives</li>
+      <li>Améliorer les fonctionnalités de l'application</li>
+      <li>Assurer la sécurité de votre compte</li>
+      <li>Vous informer des mises à jour importantes</li>
+      <li>Traiter vos paiements d'abonnement</li>
+    </ul>
+
+    <h2>Article 3 — Utilisation anonyme des données pour l'IA <span class="badge green">Transparent</span></h2>
+    <p>Traduly utilise des données de trading <strong>entièrement anonymisées et agrégées</strong> pour améliorer ses algorithmes d'analyse psychologique. L'anonymisation signifie que toute information permettant d'identifier l'utilisateur est supprimée avant traitement — aucun lien avec votre nom, email, identifiant ou adresse IP. Les données sont systématiquement agrégées avec celles d'autres utilisateurs avant tout traitement analytique, rendant toute identification individuelle impossible.</p>
+    <p>Ces données anonymes servent uniquement à améliorer la qualité des insights proposés à l'ensemble des utilisateurs. Elles ne sont jamais revendues ni utilisées à des fins commerciales ou publicitaires.</p>
+
+    <h2>Article 4 — Sous-traitants <span class="badge blue">Transparence</span></h2>
+    <ul>
+      <li><strong>Supabase Inc.</strong> — Stockage des données, serveurs en Europe (Irlande)</li>
+      <li><strong>Vercel Inc.</strong> — Hébergement de l'application, États-Unis</li>
+      <li><strong>Anthropic PBC</strong> — Traitement IA des analyses psychologiques. Vos données de trading sont transmises de façon anonymisée pour générer vos insights, conformément à la politique de confidentialité d'Anthropic.</li>
+      <li><strong>PayDunya</strong> — Traitement des paiements. PayDunya ne reçoit aucune donnée de trading.</li>
+      <li>Les autorités compétentes en cas d'obligation légale</li>
+    </ul>
+    <p>Aucune autre entité ne reçoit vos données. Vos données ne sont jamais vendues.</p>
+
+    <h2>Article 5 — Conservation des données</h2>
+    <p>Vos données sont conservées pendant toute la durée de votre utilisation. En cas de suppression de compte, vos données personnelles et de trading sont supprimées immédiatement et définitivement. Certaines données de logs techniques peuvent être conservées jusqu'à 30 jours pour des raisons de sécurité.</p>
+
+    <h2>Article 6 — Sécurité</h2>
+    <p>Vos données sont protégées par chiffrement SSL/TLS pour toutes les transmissions, mots de passe chiffrés selon les standards de sécurité en vigueur, et accès aux données strictement limité à chaque utilisateur.</p>
+
+    <h2>Article 7 — Vos droits</h2>
+    <p>Conformément à la loi n°2013-450 de Côte d'Ivoire, vous disposez des droits suivants :</p>
+    <ul>
+      <li><strong>Droit d'accès</strong> — obtenir une copie de vos données personnelles</li>
+      <li><strong>Droit de rectification</strong> — corriger des données inexactes</li>
+      <li><strong>Droit à l'effacement</strong> — supprimer votre compte et toutes vos données depuis les paramètres de l'application</li>
+      <li><strong>Droit d'opposition</strong> — vous opposer à certains traitements</li>
+      <li><strong>Droit à la portabilité</strong> — les utilisateurs Premium exportent leurs trades en CSV depuis l'app. Les utilisateurs gratuits peuvent en faire la demande par email.</li>
+    </ul>
+    <div class="infobox">
+      Pour exercer vos droits : <a href="mailto:contact@traduly.com">contact@traduly.com</a> — Réponse sous 7 jours ouvrés.
+    </div>
+
+    <h2>Article 8 — Suppression de compte</h2>
+    <p>Vous pouvez supprimer votre compte à tout moment directement depuis les <strong>paramètres de l'application</strong> en un seul clic. La suppression est immédiate et entraîne l'effacement définitif et irréversible de toutes vos données personnelles et de trading.</p>
+    <p>Tout droit d'accès, de rectification ou de portabilité des données doit être exercé <strong>avant</strong> la suppression du compte. Traduly ne pourra être tenu responsable de l'impossibilité de fournir des données après suppression volontaire du compte par l'utilisateur.</p>
+
+    <h2>Article 9 — Mineurs</h2>
+    <p>Traduly ne collecte pas sciemment de données concernant des personnes de moins de 18 ans. Si nous constatons qu'un compte appartient à un mineur, nous procédons immédiatement à la suppression du compte et de toutes les données associées.</p>
+
+    <h2>Article 10 — Cookies</h2>
+    <p>Traduly utilise uniquement des cookies techniques strictement nécessaires au fonctionnement de l'application (session, authentification). Aucun cookie publicitaire ou de tracking tiers n'est utilisé.</p>
+
+    <h2>Article 11 — Droit applicable</h2>
+    <p>La présente politique est régie par le droit ivoirien (loi n°2013-450). Tout litige relève de la compétence exclusive des tribunaux d'Abidjan.</p>
+  </div>
+
+  <!-- REMBOURSEMENT -->
+  <div class="card" id="remboursement">
+    <div class="section-tag">Politique de Remboursement</div>
+    <div class="section-title">Garantie satisfait ou remboursé</div>
+    <div class="section-meta">Version 1.0 — Mai 2026 · contact@traduly.com</div>
+
+    <h2>Article 1 — Plan gratuit</h2>
+    <p>Le plan gratuit de Traduly est accessible sans paiement. Aucun remboursement n'est applicable.</p>
+
+    <h2>Article 2 — Garantie 7 jours</h2>
+    <p>Tout abonnement premium fait l'objet d'une <strong>garantie de remboursement intégral dans les 7 jours calendaires</strong> suivant le paiement, sans justification. Cette garantie s'applique sous réserve d'une utilisation raisonnable du service — elle ne peut pas être utilisée comme moyen d'accéder aux fonctionnalités Premium, d'exporter ses données, puis d'obtenir un remboursement. Tout abus constaté entraînera le refus du remboursement et la suspension du compte.</p>
+    <p>Pour demander un remboursement, envoyez un email à <strong>contact@traduly.com</strong> avec :</p>
+    <ul>
+      <li>Votre adresse email d'inscription</li>
+      <li>La date de votre paiement</li>
+      <li>L'objet : <strong>"Demande de remboursement"</strong></li>
+    </ul>
+    <p>Le remboursement sera effectué sous <strong>5 jours ouvrés</strong> sur le moyen de paiement utilisé.</p>
+
+    <h2>Article 3 — Au-delà de 7 jours</h2>
+    <p>Passé le délai de 7 jours, <strong>aucun remboursement partiel ou total ne sera effectué</strong>, quelle qu'en soit la raison. L'accès premium reste actif jusqu'à la fin de la période payée.</p>
+
+    <h2>Article 4 — Résiliation</h2>
+    <p>Vous pouvez résilier votre abonnement Premium à tout moment depuis les <strong>paramètres de l'application</strong>, sans supprimer votre compte. La résiliation prend effet à la fin de la période en cours — vous conservez l'accès Premium jusqu'à cette date. Aucun remboursement au prorata ne sera effectué.</p>
+    <p>La résiliation de l'abonnement est distincte de la suppression du compte. Après résiliation, votre compte reste actif en plan gratuit.</p>
+
+    <h2>Article 5 — Droit applicable</h2>
+    <p>La présente politique est régie par le droit ivoirien. Tout litige relève de la compétence exclusive des tribunaux d'Abidjan.</p>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="card" id="disclaimer">
+    <div class="section-tag">Avertissement Financier</div>
+    <div class="section-title">Risques et limites de responsabilité</div>
+    <div class="section-meta">Version 1.0 — Mai 2026 · contact@traduly.com</div>
+
+    <div class="alert red">
+      ⚠️ Le trading sur les marchés financiers comporte des risques élevés de perte en capital. Traduly est un outil éducatif. Traduly n'est pas responsable de vos décisions de trading.
+    </div>
+
+    <h2>Article 1 — Nature du service</h2>
+    <p>Traduly est une application de journal de trading personnel à vocation <strong>exclusivement éducative</strong>. Son objectif est d'aider les traders à enregistrer, suivre et analyser leurs performances psychologiques et statistiques.</p>
+    <p>Traduly <strong>n'est pas</strong> un conseiller financier, gestionnaire d'actifs, courtier agréé, fournisseur de signaux de trading, ni une institution financière réglementée. Traduly n'est affilié à aucun broker, prop firm ou plateforme de trading.</p>
+
+    <h2>Article 2 — Analyses IA à vocation éducative uniquement <span class="badge red">Critique</span></h2>
+    <p>Les analyses psychologiques générées par l'IA de Traduly sont fournies <strong>à des fins éducatives uniquement</strong>. Elles visent à aider le trader à identifier ses biais psychologiques et visualiser ses patterns de comportement.</p>
+    <p>Ces analyses <strong>ne constituent en aucun cas</strong> des conseils en investissement, recommandations d'achat ou de vente, signaux de trading, prédictions de marché, stratégie certifiée ou garantie de résultats futurs.</p>
+    <div class="alert">
+      Toute décision de trading prise après consultation des analyses Traduly relève de la seule et entière responsabilité de l'utilisateur. Traduly décline expressément toute responsabilité pour les conséquences financières de ces décisions.
+    </div>
+
+    <h2>Article 3 — Risques du trading</h2>
+    <p>Le trading sur les marchés financiers comporte des risques élevés de perte en capital, <strong>pouvant dépasser le montant initial investi</strong>. Les performances passées enregistrées dans Traduly ne garantissent en aucun cas les résultats futurs.</p>
+
+    <h2>Article 4 — Limitation de responsabilité <span class="badge red">Critique</span></h2>
+    <p>Dans toute la mesure permise par la loi, <strong>Traduly décline toute responsabilité</strong> pour :</p>
+    <ul>
+      <li>Toute perte financière résultant de décisions de trading</li>
+      <li>Toute décision prise sur la base des statistiques ou analyses affichées</li>
+      <li>L'exactitude des données saisies par l'utilisateur</li>
+      <li>Les interruptions temporaires ou permanentes du service</li>
+      <li>Les résultats d'un challenge prop firm ou toute évaluation de trading</li>
+      <li>Toute perte indirecte ou consécutive liée à l'utilisation de Traduly</li>
+    </ul>
+
+    <h2>Article 5 — Responsabilité exclusive de l'utilisateur</h2>
+    <p>En utilisant Traduly, l'utilisateur reconnaît expressément :</p>
+    <ul>
+      <li>Être <strong>seul et entièrement responsable</strong> de toutes ses décisions de trading</li>
+      <li>Avoir pleinement conscience des risques inhérents aux marchés financiers</li>
+      <li>Utiliser Traduly uniquement comme outil de suivi et d'analyse personnelle éducative</li>
+      <li>Ne pas se fier exclusivement aux analyses de Traduly pour ses décisions</li>
+      <li>Avoir lu et compris le présent avertissement dans son intégralité</li>
+    </ul>
+
+    <h2>Article 6 — Prop firms et challenges</h2>
+    <p>Les fonctionnalités de suivi de challenges prop firms (FTMO, MyForexFunds, The5%ers, TopStep et tout autre organisme similaire) sont fournies à titre de suivi personnel uniquement. Traduly ne garantit pas le succès d'un challenge et n'est en aucun cas responsable d'un échec, d'une disqualification, d'une perte de financement ou d'une perte de capital dans le cadre d'un challenge, quelle qu'en soit la cause. Les règles des prop firms sont susceptibles de changer sans préavis et restent sous la seule responsabilité de l'utilisateur.</p>
+
+    <h2>Article 7 — Droit applicable</h2>
+    <p>Le présent avertissement est régi par le droit ivoirien. Tout litige relève de la compétence exclusive des tribunaux d'Abidjan, et s'applique à tous les utilisateurs de Traduly quelle que soit leur nationalité ou lieu de résidence.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:12px">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#059669"/></linearGradient></defs>
+      <line x1="12" y1="1" x2="12" y2="5" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
+      <rect x="7" y="5" width="10" height="14" rx="2.5" fill="url(#fg)"/>
+      <line x1="12" y1="19" x2="12" y2="23" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <div class="footer-logo"><span class="w">Trad</span><span class="g">uly</span></div>
+  </div>
+  <div class="footer-info">
+    Éditeur : Cyril Compaore · Abidjan, République de Côte d'Ivoire<br>
+    <a href="mailto:contact@traduly.com">contact@traduly.com</a> ·
+    <a href="/">Retour à l'accueil</a> ·
+    <a href="https://app.traduly.com">Accéder à l'app</a><br><br>
+    © 2026 Traduly — Tous droits réservés
+  </div>
+</footer>
+
+<script>
+  const sections = ['cgu','confidentialite','remboursement','disclaimer'];
+  const links = document.querySelectorAll('.nav-tabs a');
+  window.addEventListener('scroll', () => {
+    let current = sections[0];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if(el && window.scrollY >= el.offsetTop - 100) current = id;
+    });
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
+  });
+</script>
+
+</body>
+</html>
