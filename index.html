@@ -178,7 +178,7 @@ h1 .ac{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-cli
 .tog.on .tth{transform:translateX(21px)}
 .spill{font-size:11px;font-weight:700;background:var(--gbg);color:var(--g);padding:3px 8px;border-radius:var(--rpill)}
 /* New pricing layout */
-.prix-wrap{max-width:860px;margin:40px auto 0;display:grid;grid-template-columns:1fr;gap:0;border-radius:24px;overflow:visible;border:1.5px solid var(--border);box-shadow:0 4px 32px rgba(0,0,0,.06)}
+.prix-wrap{max-width:860px;margin:40px auto 0;display:grid;grid-template-columns:1fr;gap:0;border-radius:24px;overflow:visible;border:1.5px solid var(--border);box-shadow:0 4px 32px rgba(0,0,0,.06);width:100%}
 /* Row header */
 .prix-header{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--bg);overflow:visible}
 .prix-col-label{padding:20px 24px;border-right:1px solid var(--border)}
@@ -251,46 +251,56 @@ footer{background:#080a0c;padding:64px 6% 32px}
 
 /* RESPONSIVE */
 @media(max-width:1024px){
-  .hero{grid-template-columns:1fr;min-height:auto;padding:110px 6% 60px;text-align:center;gap:48px}
-  .sub,.lead{margin:0 auto}
-  .sub{margin-bottom:40px}
-  .cta-row,.nt{justify-content:center}
-  .avs{justify-content:center}
-  .pw{order:-1}
   .pc{grid-template-columns:1fr}
   .sg{grid-template-columns:1fr;gap:48px}
   .fg{grid-template-columns:1fr 1fr}
-  .pgrid{grid-template-columns:1fr;max-width:420px}
   .tg{grid-template-columns:1fr}
-  .si{grid-template-columns:repeat(2,1fr)}
   .ft{grid-template-columns:1fr 1fr}
   .nl{display:none}
   .nm{display:flex}
   .nbtn:not(.nm){display:none}
+  /* Hero 2 colonnes jusqu'à 1024, téléphone visible */
+  .hero{gap:40px;padding:100px 5% 60px}
+  .lead{margin:0 auto}
+}
+@media(max-width:900px){
+  /* Téléphone toujours visible mais hero en colonne */
+  .hero{grid-template-columns:1fr;text-align:center;min-height:auto;padding:100px 6% 60px;gap:48px}
+  .sub,.lead{margin:0 auto}
+  .sub{margin-bottom:40px}
+  .cta-row,.nt,.avs{justify-content:center}
+  .pw{order:-1}
 }
 @media(max-width:768px){
-  .prix-wrap{border:none;box-shadow:none;background:transparent}
-  .prix-header{grid-template-columns:1fr;gap:16px;background:transparent;padding:0}
-  .prix-col-label{border:1.5px solid var(--border);border-radius:20px;padding:24px}
+  /* Téléphone caché */
+  .pw{display:none}
+  /* Hero */
+  .hero{grid-template-columns:1fr;text-align:center;min-height:auto;padding:100px 6% 60px}
+  .sub{margin:0 auto 40px}
+  .cta-row,.nt,.avs{justify-content:center}
+  /* Pricing: section avec padding latéral */
+  #prix{padding-left:16px!important;padding-right:16px!important}
+  /* Wrap: pas de bordure propre, chaque card a la sienne */
+  .prix-wrap{border:none;box-shadow:none;background:transparent;margin:32px 0 0}
+  .prix-header{display:flex;flex-direction:column;gap:16px;background:transparent;padding:0}
+  /* Chaque card prend toute la largeur avec sa propre bordure */
+  .prix-col-label{border:1.5px solid var(--border);border-radius:20px;padding:24px;box-sizing:border-box;width:100%}
   .prix-col-label:first-child{display:none}
-  .prix-col-label.highlight{background:#f0fdf4;border-color:var(--g);box-shadow:0 4px 20px rgba(22,163,74,.12)}
+  .prix-col-label.highlight{background:#f0fdf4;border:1.5px solid var(--g)!important;box-shadow:0 4px 20px rgba(22,163,74,.12);box-sizing:border-box}
   .prix-row{display:none}
-  /* Show features as inline list inside cards */
-  .prix-col-label::after{content:'';display:block}
-  /* Mobile feature list appended via JS */
   .mobile-feats{list-style:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
   .mobile-feats li{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--tx2)}
-  .mobile-feats li::before{content:'✓';color:var(--g);font-weight:800;flex-shrink:0}
+  .mobile-feats li::before{content:"✓";color:var(--g);font-weight:800;flex-shrink:0}
   .mobile-feats li.off{color:var(--border)}
-  .mobile-feats li.off::before{content:'×';color:var(--border)}
-  .prix-badge{display:none} .crown-badge{top:-18px;right:-8px;font-size:28px}
-  .prix-btn-free,.prix-btn-pro{width:100%;justify-content:center;padding:11px}
+  .mobile-feats li.off::before{content:"×";color:var(--border)}
+  .prix-badge{display:none}
+  .prix-btn-free,.prix-btn-pro{width:100%;justify-content:center;padding:12px;display:flex;box-sizing:border-box}
+  .prix-num{font-size:44px}
 }
 @media(max-width:600px){
   .fg{grid-template-columns:1fr}
   .ft{grid-template-columns:1fr}
   .fb{flex-direction:column;align-items:flex-start}
-  .phone{width:220px}
 }
 </style>
 </head>
