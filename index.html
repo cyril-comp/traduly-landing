@@ -3,1016 +3,627 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#022C22">
-<title>Traduly — Le journal de trading qui travaille pour toi</title>
-<meta name="description" content="Traduly importe automatiquement tes trades MT4/MT5. Analyse ta performance, maîtrise ta psychologie, progresse enfin.">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<title>Traduly — Comprends enfin pourquoi tu perds.</title>
+<meta name="description" content="Traduly analyse tes trades, détecte tes biais psychologiques et te dit ce que ta prop firm ne te dira jamais. En français. Sur mobile.">
+<!-- Favicons multi-navigateurs -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23059669'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%2334d399'/%3E%3Cstop offset='100%25' stop-color='%23059669'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cline x1='16' y1='2' x2='16' y2='7' stroke='%2334d399' stroke-width='2.5' stroke-linecap='round'/%3E%3Crect x='9' y='7' width='14' height='17' rx='3.5' fill='url(%23g)'/%3E%3Crect x='11' y='9' width='5' height='6' rx='1.5' fill='rgba(255,255,255,0.22)'/%3E%3Cline x1='16' y1='24' x2='16' y2='29' stroke='%23059669' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAo0lEQVRYhe2WMQqDQBBFn4gXsBdhwSt5YS8hd/AGFkE8lYWFZ7CwSBoLQUh2dmcTC6eLjkUyO8r8z4OBfR8GBgYGBr4oA7wBHeBnBKSUHkBUVb1tAVhK6Q5ExC4zF7MFWETkBThExFZEzszsZWb3iPgAqgVYAB/A23sPkHNuB+CcW7bFmXMG8AKqGkBEZiJyAi7AE3hm5tHMFiLyBR4BfhJCuBDyRtOqbQAAAABJRU5ErkJggg==">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23059669'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%2334d399'/%3E%3Cstop offset='100%25' stop-color='%23059669'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cline x1='90' y1='12' x2='90' y2='42' stroke='%2334d399' stroke-width='14' stroke-linecap='round'/%3E%3Crect x='50' y='42' width='80' height='96' rx='18' fill='url(%23g)'/%3E%3Crect x='62' y='54' width='30' height='36' rx='8' fill='rgba(255,255,255,0.22)'/%3E%3Cline x1='90' y1='138' x2='90' y2='168' stroke='%23059669' stroke-width='14' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#059669">
+<meta name="msapplication-TileColor" content="#059669">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --em:     #059669;
-  --em-l:   #10B981;
-  --em-d:   #047857;
-  --em-50:  #ECFDF5;
-  --em-100: #D1FAE5;
-  --forest: #022C22;
-  --black:  #0A0A0A;
-  --g900:   #111827;
-  --g700:   #374151;
-  --g500:   #6B7280;
-  --g300:   #D1D5DB;
-  --g100:   #F3F4F6;
-  --g50:    #F9FAFB;
-  --white:  #FFFFFF;
-  --win:    #10B981;
-  --loss:   #EF4444;
-  --be:     #F59E0B;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#16a34a;--gl:#34d399;--gd:#059669;--gbg:#f0fdf4;
+  --bg:#fff;--bg2:#f8fafc;--border:#e2e8f0;
+  --tx:#0f172a;--tx2:#475569;--tx3:#94a3b8;
+  --app:#0f1014;--appc:#1a1d24;
+  --r:14px;--rpill:999px;
 }
-
-*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--tx);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-body{
-  font-family:'Plus Jakarta Sans',sans-serif;
-  background:var(--white);
-  color:var(--black);
-  overflow-x:hidden;
-}
+/* LOGO */
+.logo{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.logo-t{font-family:'Outfit',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.04em;line-height:1}
+.logo-t .w{color:var(--tx)}
+.logo-t .g{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:rgba(255,255,255,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(226,232,240,.7);transition:box-shadow .3s}
+nav.sc{box-shadow:0 2px 24px rgba(0,0,0,.07)}
+.nl{display:flex;align-items:center;gap:28px;list-style:none}
+.nl a{font-size:14px;font-weight:500;color:var(--tx2);text-decoration:none;transition:color .2s}
+.nl a:hover{color:var(--tx)}
+.nbtn{display:inline-flex;align-items:center;gap:6px;background:var(--tx);color:#fff;padding:10px 22px;border-radius:var(--rpill);font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:-0.01em;transition:opacity .2s}
+.nbtn:hover{opacity:.82}
+.nm{display:none}
 
-.fade-up{animation:fadeUp 0.7s ease both}
-.d1{animation-delay:0.1s}.d2{animation-delay:0.2s}.d3{animation-delay:0.3s}.d4{animation-delay:0.4s}.d5{animation-delay:0.5s}
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:96px 6% 60px;max-width:1280px;margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--gbg);border:1px solid rgba(22,163,74,.15);color:var(--g);padding:6px 14px;border-radius:var(--rpill);font-size:13px;font-weight:600;margin-bottom:28px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--gl);animation:bl 2s infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-family:'Outfit',sans-serif;font-size:clamp(40px,4.5vw,64px);font-weight:800;letter-spacing:-0.04em;line-height:1.05;color:var(--tx);margin-bottom:20px}
+h1 .ac{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sub{font-size:17px;color:var(--tx2);line-height:1.7;margin-bottom:40px;max-width:460px}
+.sub strong{color:var(--tx);font-weight:600}
+.cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#16a34a,#059669);color:#fff;padding:14px 28px;border-radius:var(--rpill);font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:-0.01em;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 20px rgba(22,163,74,.35)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(22,163,74,.4)}
+.btn:active{transform:none}
+.arr{display:inline-block;transition:transform .2s}
+.btn:hover .arr{transform:translateX(4px)}
+.nt{font-size:13px;color:var(--tx3);display:flex;align-items:center;gap:6px}
+.nt::before{content:'🔒';font-size:12px}
+.avs{display:flex;align-items:center;gap:12px;margin-top:32px}
+.avstack{display:flex}
+.av{width:34px;height:34px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;margin-left:-10px}
+.av:first-child{margin-left:0}
+.avt{font-size:13px;color:var(--tx2);font-weight:500}
+.avt strong{color:var(--tx);font-weight:700}
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:0 5%;
-  height:64px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(255,255,255,0.92);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--g100);
-  transition:box-shadow 0.3s;
-}
-nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,0.06)}
-.nav-logo{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.04em;text-decoration:none;color:var(--black)}
-.nav-logo span{color:var(--em)}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-link{font-size:14px;font-weight:500;color:var(--g700);text-decoration:none;transition:color 0.2s}
-.nav-link:hover{color:var(--em)}
-.nav-cta{background:var(--em);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;padding:9px 20px;border-radius:8px;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer}
-.nav-cta:hover{background:var(--em-d);transform:translateY(-1px)}
-.nav-mobile-btn{display:none;background:none;border:none;cursor:pointer;padding:4px}
-.hamburger{width:22px;height:2px;background:var(--black);display:block;position:relative;transition:all 0.3s}
-.hamburger::before,.hamburger::after{content:'';position:absolute;width:22px;height:2px;background:var(--black);transition:all 0.3s}
-.hamburger::before{top:-7px}
-.hamburger::after{top:7px}
+/* PHONE */
+.pw{display:flex;justify-content:center;align-items:center;position:relative}
+.pw::before{content:'';position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(22,163,74,.07) 0%,transparent 70%);pointer-events:none}
+.phone{width:260px;background:#1c1c1e;border-radius:50px;padding:0;box-shadow:0 0 0 1.5px rgba(255,255,255,.1),0 48px 96px rgba(0,0,0,.55),0 0 80px rgba(52,211,153,.05);animation:lev 5s ease-in-out infinite;position:relative;overflow:hidden}
+.phone-btn{position:absolute;right:-3px;top:110px;width:3px;height:32px;background:#48484a;border-radius:0 2px 2px 0;z-index:10}
+.phone-vol1{position:absolute;left:-3px;top:80px;width:3px;height:28px;background:#48484a;border-radius:2px 0 0 2px;z-index:10}
+.phone-vol2{position:absolute;left:-3px;top:118px;width:3px;height:28px;background:#48484a;border-radius:2px 0 0 2px;z-index:10}
+@keyframes lev{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.pi{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:100px;height:28px;background:#000;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:5px;z-index:20}
+.pi-cam{width:9px;height:9px;border-radius:50%;background:#1c1c1e;border:1.5px solid #2c2c2e;box-shadow:inset 0 0 0 2px #111}
+.pi-mic{width:36px;height:4px;border-radius:2px;background:#1a1a1c}
+.ps{background:#0f1014;border-radius:50px;overflow:hidden;padding:50px 14px 16px;min-height:530px}
+.an{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;background:#0f1014;margin:0 -14px 14px;padding:14px 14px 10px;border-bottom:1px solid rgba(255,255,255,.05)}
+.alt{font-family:'Outfit',sans-serif;font-weight:800;font-size:15px;letter-spacing:-0.04em}
+.alt .w{color:#fff}.alt .g{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.aav{width:34px;height:34px;border-radius:50%;background:#1a2520;border:1.5px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:11px;font-weight:800;color:rgba(255,255,255,.85);letter-spacing:.02em}
+.agr{margin-bottom:14px}
+.agn{font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:#fff;letter-spacing:-0.03em}
+.agd{font-size:10px;color:rgba(255,255,255,.35);margin-top:1px}
+.ai{background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.2);border-left:3px solid #fb923c;border-radius:10px;padding:10px 12px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start}
+.ai-ic{font-size:13px;flex-shrink:0;margin-top:1px}
+.ai-tx{font-size:10px;color:rgba(255,255,255,.75);line-height:1.5}
+.ai-tx strong{color:#fb923c}
+.ams{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.am{background:#1a1d24;border-radius:10px;padding:10px 12px}
+.aml{font-size:8px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.amv{font-family:'Outfit',sans-serif;font-weight:800;font-size:20px;color:#fff;letter-spacing:-0.03em;line-height:1}
+.amv.pos{color:#34d399}.amv.neg{color:#f87171}
+.ams2{font-size:9px;color:rgba(255,255,255,.35);margin-top:2px}
+.atrs{background:#1a1d24;border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.atrt{font-size:8px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.atr{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.atr:last-child{border:none;padding-bottom:0}
+.atrl{display:flex;flex-direction:column;gap:1px}
+.atrp{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;color:#fff;letter-spacing:-0.02em}
+.atre{font-size:9px;color:rgba(255,255,255,.3)}
+.atrv{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700}
+.atrv.pos{color:#34d399}.atrv.neg{color:#f87171}
+.apsy{background:#1a1d24;border-radius:10px;padding:10px 12px}
+.apsyt{font-size:8px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.er{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.er:last-child{margin-bottom:0}
+.el{font-size:9px;color:rgba(255,255,255,.45);width:52px;flex-shrink:0}
+.et{flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.ef{height:100%;border-radius:2px}
+.ec{font-size:9px;color:rgba(255,255,255,.35);width:8px;text-align:right}
+.abn{display:flex;justify-content:space-around;padding:10px 0 4px;border-top:1px solid rgba(255,255,255,.05);margin-top:8px}
+.abt{display:flex;flex-direction:column;align-items:center;gap:3px}
+.abti{font-size:13px;opacity:.4}
+.abti.on{opacity:1}
+.abtl{font-size:7px;color:rgba(255,255,255,.25);letter-spacing:.3px}
+.abtl.on{color:#34d399}
 
-/* ── TICKER ── */
-.ticker-wrap{background:var(--forest);padding:10px 0;overflow:hidden}
-.ticker-inner{display:flex;white-space:nowrap;animation:ticker 30s linear infinite}
-.ticker-item{font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.12em;text-transform:uppercase;padding:0 32px}
-.ticker-item span{color:var(--em-l);margin:0 8px}
 
-/* ── HERO ── */
-.hero{
-  min-height:100vh;
-  padding:120px 5% 80px;
-  display:flex;align-items:center;
-  position:relative;
-  overflow:hidden;
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(5,150,105,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(5,150,105,0.04) 0%, transparent 60%);
-  pointer-events:none;
-}
-.hero-grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(var(--g100) 1px, transparent 1px),
-    linear-gradient(90deg, var(--g100) 1px, transparent 1px);
-  background-size:48px 48px;
-  opacity:0.5;
-  pointer-events:none;
-}
-.hero-inner{
-  max-width:1200px;margin:0 auto;width:100%;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:64px;align-items:center;
-}
-.hero-left{position:relative;z-index:1}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--em-50);border:1px solid var(--em-100);
-  color:var(--em-d);font-size:12px;font-weight:600;
-  padding:6px 14px;border-radius:100px;
-  letter-spacing:0.04em;margin-bottom:28px;
-}
-.hero-badge-dot{width:6px;height:6px;background:var(--em);border-radius:50%;animation:pulse 2s ease infinite}
-.hero-h1{
-  font-family:'Outfit',sans-serif;
-  font-size:clamp(40px,5vw,64px);
-  font-weight:900;
-  letter-spacing:-0.04em;
-  line-height:1.05;
-  color:var(--black);
-  margin-bottom:24px;
-}
-.hero-h1 .em{color:var(--em)}
-.hero-h1 .line{display:block}
-.hero-sub{
-  font-size:17px;line-height:1.7;
-  color:var(--g700);font-weight:400;
-  margin-bottom:40px;max-width:480px;
-}
-.hero-sub strong{color:var(--black);font-weight:600}
 
-/* EMAIL FORM */
-.hero-form{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-.hero-input{
-  flex:1;min-width:220px;
-  background:var(--white);
-  border:1.5px solid var(--g300);
-  border-radius:10px;
-  padding:14px 18px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:15px;color:var(--black);
-  outline:none;transition:border-color 0.2s,box-shadow 0.2s;
-}
-.hero-input:focus{border-color:var(--em);box-shadow:0 0 0 3px rgba(5,150,105,0.1)}
-.hero-input::placeholder{color:var(--g500)}
-.hero-btn{
-  background:var(--em);color:var(--white);
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:15px;font-weight:700;
-  padding:14px 28px;border-radius:10px;
-  border:none;cursor:pointer;
-  transition:all 0.2s;white-space:nowrap;
-}
-.hero-btn:hover{background:var(--em-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(5,150,105,0.25)}
-.hero-form-note{font-size:12px;color:var(--g500);display:flex;align-items:center;gap:6px}
-.hero-form-note svg{color:var(--em)}
+/* LAYOUT */
+.sec{padding:96px 6%;max-width:1280px;margin:0 auto}
+.secf{padding:96px 6%;background:var(--bg2)}
+.secf .si2{max-width:1280px;margin:0 auto}
+.tag{display:inline-block;font-size:12px;font-weight:700;color:var(--g);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.h2{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(28px,3.5vw,48px);letter-spacing:-0.04em;color:var(--tx);line-height:1.1;margin-bottom:14px}
+.h2 .ac{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lead{font-size:17px;color:var(--tx2);line-height:1.7;max-width:520px}
 
-/* SOCIAL PROOF */
-.hero-proof{display:flex;align-items:center;gap:20px;margin-top:32px;flex-wrap:wrap}
-.proof-avatars{display:flex}
-.proof-avatar{
-  width:36px;height:36px;border-radius:50%;
-  border:2px solid var(--white);
-  background:var(--em-100);
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;color:var(--em-d);
-  margin-left:-10px;
-}
-.proof-avatar:first-child{margin-left:0}
-.proof-text{font-size:13px;color:var(--g700)}
-.proof-text strong{color:var(--black);font-weight:700}
+/* PROBLEM */
+.pc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.pcard{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:32px;transition:transform .2s,box-shadow .2s,border-color .2s}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.07);border-color:rgba(22,163,74,.2)}
+.pe{font-size:32px;margin-bottom:20px;display:block}
+.pt{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;letter-spacing:-0.02em;color:var(--tx);margin-bottom:10px}
+.pb{font-size:14px;color:var(--tx2);line-height:1.7}
 
-/* HERO RIGHT — DASHBOARD MOCKUP */
-.hero-right{position:relative;z-index:1;animation:float 6s ease-in-out infinite}
-.dashboard-card{
-  background:var(--white);
-  border:1.5px solid var(--g100);
-  border-radius:24px;
-  padding:28px;
-  box-shadow:0 24px 80px rgba(0,0,0,0.1),0 4px 16px rgba(5,150,105,0.08);
-}
-.dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
-.dash-logo{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;letter-spacing:-0.03em}
-.dash-logo span{color:var(--em)}
-.dash-user{display:flex;align-items:center;gap:8px}
-.dash-avatar{width:32px;height:32px;background:var(--em-50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--em-d)}
-.dash-name{font-size:13px;font-weight:600;color:var(--g700)}
+/* SOLUTION */
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:24px}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border)}
+.step:last-child{border:none}
+.snum{width:38px;height:38px;border-radius:50%;flex-shrink:0;margin-top:2px;background:linear-gradient(135deg,#16a34a,#059669);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:#fff;box-shadow:0 4px 12px rgba(22,163,74,.3)}
+.step h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;letter-spacing:-0.02em;color:var(--tx);margin-bottom:6px}
+.step p{font-size:14px;color:var(--tx2);line-height:1.7}
+.ic{background:var(--app);border-radius:20px;padding:28px;border:1px solid rgba(255,255,255,.06);box-shadow:0 32px 64px rgba(0,0,0,.25)}
+.ich{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.ico{width:40px;height:40px;border-radius:12px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.18);display:flex;align-items:center;justify-content:center;font-size:18px}
+.ict{font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.02em}
+.ics{font-size:11px;color:rgba(255,255,255,.3);margin-top:1px}
+.ibb{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-left:3px solid #34d399;border-radius:10px;padding:14px 16px;margin-bottom:16px;font-size:13px;color:rgba(255,255,255,.7);line-height:1.7}
+.ibb strong{color:#34d399;font-weight:600}
+.itags{display:flex;gap:6px;flex-wrap:wrap}
+.itag{font-size:11px;padding:4px 12px;border-radius:var(--rpill);background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.18)}
 
-.dash-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-.dash-stat{background:#F3F4F6;border:1px solid #D1D5DB;border-radius:14px;padding:16px}
-.dash-stat-label{font-size:10px;font-weight:600;color:var(--g500);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
-.dash-stat-val{font-family:'Outfit',sans-serif;font-size:28px;font-weight:800;letter-spacing:-0.03em;color:var(--black)}
-.dash-stat-change{font-size:11px;font-weight:600;margin-top:4px}
-.up{color:var(--win)}.down{color:var(--loss)}
+/* FEATURES */
+.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.fc{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:28px 28px 28px;transition:all .2s;position:relative;overflow:hidden}
+.fc:hover{border-color:rgba(22,163,74,.25);box-shadow:0 8px 28px rgba(22,163,74,.08);transform:translateY(-2px)}
+.fc-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;padding:4px 10px;border-radius:var(--rpill);margin-bottom:20px;letter-spacing:.04em}
+.fc-badge.fr{background:#f0fdf4;color:#16a34a;border:1px solid rgba(22,163,74,.15)}
+.fc-badge.pr{background:#fff7ed;color:#c2410c;border:1px solid rgba(194,65,12,.15)}
+.fc-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor}
+.fic{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;background:var(--bg2)}
+.fct{font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;letter-spacing:-0.02em;color:var(--tx);margin-bottom:8px}
+.fcb{font-size:13px;color:var(--tx2);line-height:1.65}
+.fc-accent{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#16a34a,#34d399);opacity:0;transition:opacity .2s}
+.fc:hover .fc-accent{opacity:1}
 
-.dash-trades{margin-bottom:20px}
-.dash-trades-title{font-size:11px;font-weight:700;color:var(--g500);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px}
-.dash-trade{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--g100)}
-.dash-trade:last-child{border:none}
-.trade-left{display:flex;align-items:center;gap:10px}
-.trade-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.trade-pair{font-size:13px;font-weight:700;color:var(--black)}
-.trade-time{font-size:11px;color:var(--g500)}
-.trade-result{font-size:13px;font-weight:700}
-.trade-emotion{font-size:11px;color:var(--g500);text-align:right}
+/* PRICING */
+.ptog{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:40px}
+.ptog span{font-size:14px;font-weight:500;color:var(--tx2)}
+.tog{width:46px;height:25px;background:var(--g);border-radius:13px;cursor:pointer;position:relative;border:none;outline:none}
+.tth{position:absolute;top:2.5px;left:2.5px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+.tog.on .tth{transform:translateX(21px)}
+.spill{font-size:11px;font-weight:700;background:var(--gbg);color:var(--g);padding:3px 8px;border-radius:var(--rpill)}
+/* New pricing layout */
+.prix-wrap{max-width:860px;margin:40px auto 0;display:grid;grid-template-columns:1fr;gap:0;border-radius:24px;overflow:hidden;border:1.5px solid var(--border);box-shadow:0 4px 32px rgba(0,0,0,.06)}
+/* Row header */
+.prix-header{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--bg)}
+.prix-col-label{padding:20px 24px;border-right:1px solid var(--border)}
+.prix-col-label:last-child{border-right:none}
+.prix-col-label.highlight{background:#f0fdf4}
+.prix-plan-name{font-size:11px;font-weight:700;color:var(--tx3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.prix-amount{display:flex;align-items:baseline;gap:4px;margin-bottom:2px;white-space:nowrap;flex-wrap:nowrap}
+.prix-num{font-family:'Outfit',sans-serif;font-weight:800;font-size:36px;letter-spacing:-0.04em;color:var(--tx);line-height:1;white-space:nowrap}
+.prix-cur{font-size:13px;font-weight:700;color:var(--tx2)}
+.prix-per{font-size:11px;color:var(--tx3);margin-bottom:14px}
+.prix-btn-free{display:inline-flex;align-items:center;justify-content:center;padding:9px 20px;border-radius:var(--rpill);border:1.5px solid var(--border);font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;color:var(--tx);text-decoration:none;transition:all .2s;background:transparent}
+.prix-btn-free:hover{border-color:var(--g);color:var(--g)}
+.prix-btn-pro{display:inline-flex;align-items:center;justify-content:center;padding:9px 20px;border-radius:var(--rpill);border:none;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;color:#fff;text-decoration:none;transition:opacity .2s;background:linear-gradient(135deg,#16a34a,#059669);box-shadow:0 3px 12px rgba(22,163,74,.3)}
+.prix-btn-pro:hover{opacity:.88}
+.prix-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#fff;background:linear-gradient(135deg,#16a34a,#059669);border:none;padding:5px 14px;border-radius:var(--rpill);box-shadow:0 3px 10px rgba(22,163,74,.3)}
+/* Feature rows */
+.prix-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border)}
+.prix-row:hover{background:#fafafa}
+.prix-cell{padding:13px 24px;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--tx2);border-right:1px solid var(--border)}
+.prix-cell:last-child{border-right:none}
+.prix-cell.highlight{background:#f9fefb}
+.prix-cell.feat-name{font-weight:500;color:var(--tx);background:var(--bg2)}
+.prix-check{color:var(--g);font-weight:800;font-size:14px;flex-shrink:0}
+.prix-cross{color:var(--border);font-weight:800;font-size:14px;flex-shrink:0}
+.pmeth{text-align:center;margin-top:20px;font-size:12px;color:var(--tx3)}
 
-.dash-psychology{background:var(--em-50);border-radius:14px;padding:16px}
-.dash-psy-title{font-size:11px;font-weight:700;color:var(--em-d);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
-.psy-bars{display:flex;flex-direction:column;gap:8px}
-.psy-bar-row{display:flex;align-items:center;gap:10px}
-.psy-label{font-size:11px;color:var(--em-d);width:80px;font-weight:500}
-.psy-track{flex:1;height:6px;background:rgba(5,150,105,0.15);border-radius:100px;overflow:hidden}
-.psy-fill{height:100%;border-radius:100px;background:var(--em)}
-.psy-val{font-size:11px;font-weight:700;color:var(--em-d);width:24px;text-align:right}
+/* TESTIMONIALS */
+.tg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:52px}
+.tcard{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:28px;transition:transform .2s}
+.tcard:hover{transform:translateY(-3px)}
+.stars{color:#f59e0b;font-size:13px;letter-spacing:2px;margin-bottom:14px}
+.tq{font-size:15px;color:var(--tx);line-height:1.7;font-style:italic;margin-bottom:20px}
+.tau{display:flex;align-items:center;gap:12px}
+.tav{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0}
+.tan{font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;letter-spacing:-0.02em;color:var(--tx)}
+.tal{font-size:12px;color:var(--tx3)}
 
-/* ── STATS BANNER ── */
-.stats-banner{background:var(--forest);padding:48px 5%}
-.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.stat-item{text-align:center}
-.stat-num{font-family:'Outfit',sans-serif;font-size:42px;font-weight:900;letter-spacing:-0.04em;color:var(--white)}
-.stat-num .em{color:var(--em-l)}
-.stat-desc{font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:400}
+/* CTA */
+.ctaf{background:var(--tx);padding:120px 6%;text-align:center;position:relative;overflow:hidden}
+.ctaf::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(52,211,153,.07) 0%,transparent 70%);pointer-events:none}
+.ctai{max-width:640px;margin:0 auto;position:relative;z-index:1}
+.ctaf h2{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(34px,4vw,56px);letter-spacing:-0.04em;color:#fff;line-height:1.05;margin-bottom:16px}
+.ctaf h2 em{font-style:normal;color:#34d399}
+.ctaf p{font-size:16px;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:40px}
+.ctaf .btn{font-size:16px;padding:16px 36px}
+.ctan{margin-top:16px;font-size:12px;color:rgba(255,255,255,.2)}
 
-/* ── PROBLEM SECTION ── */
-.problem{padding:96px 5%;background:var(--white)}
-.section-inner{max-width:1200px;margin:0 auto}
-.section-tag{font-size:11px;font-weight:700;color:var(--em);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:16px}
-.section-h2{font-family:'Outfit',sans-serif;font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-0.03em;line-height:1.1;color:var(--black);margin-bottom:20px}
-.section-sub{font-size:17px;line-height:1.7;color:var(--g700);max-width:560px;margin-bottom:56px}
+/* FOOTER */
+footer{background:#080a0c;padding:64px 6% 32px}
+.fi{max-width:1280px;margin:0 auto}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+.flt{font-family:'Outfit',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.04em;margin-bottom:10px}
+.flt .w{color:#fff}
+.flt .g{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ftag{font-size:13px;color:rgba(255,255,255,.22);line-height:1.6;max-width:220px}
+.fcol h4{font-size:11px;font-weight:700;color:rgba(255,255,255,.25);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fcol a{font-size:13px;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.fcol a:hover{color:rgba(255,255,255,.75)}
+.fb{border-top:1px solid rgba(255,255,255,.05);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.fcp{font-size:12px;color:rgba(255,255,255,.18)}
+.fleg{display:flex;gap:20px}
+.fleg a{font-size:12px;color:rgba(255,255,255,.18);text-decoration:none;transition:color .2s}
+.fleg a:hover{color:rgba(255,255,255,.5)}
 
-.problems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.problem-card{
-  border:1.5px solid var(--g100);border-radius:20px;padding:32px;
-  background:var(--white);transition:all 0.3s;
-}
-.problem-card:hover{border-color:var(--em-100);box-shadow:0 8px 32px rgba(5,150,105,0.08);transform:translateY(-4px)}
-.problem-icon{font-size:32px;margin-bottom:16px}
-.problem-title{font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;color:var(--black);margin-bottom:10px;letter-spacing:-0.02em}
-.problem-desc{font-size:14px;line-height:1.65;color:var(--g700)}
+/* REVEAL */
+.r{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.r.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 
-/* ── SOLUTION SECTION ── */
-.solution{padding:96px 5%;background:var(--g50)}
-.solution-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.solution-steps{display:flex;flex-direction:column;gap:28px}
-.solution-step{display:flex;gap:20px;align-items:flex-start}
-.step-num{
-  width:36px;height:36px;border-radius:10px;
-  background:var(--em);color:var(--white);
-  font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.step-content{}
-.step-title{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:var(--black);margin-bottom:6px;letter-spacing:-0.02em}
-.step-desc{font-size:14px;line-height:1.65;color:var(--g700)}
-
-/* Phone mockup */
-.phone-wrap{display:flex;justify-content:center}
-.phone{
-  width:260px;
-  background:var(--white);
-  border-radius:36px;
-  padding:24px 16px;
-  border:2px solid var(--g100);
-  box-shadow:0 32px 80px rgba(0,0,0,0.12);
-}
-.phone-notch{width:80px;height:8px;background:var(--g100);border-radius:100px;margin:0 auto 24px}
-.phone-nav-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
-.p-logo{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;letter-spacing:-0.03em}
-.p-logo span{color:var(--em)}
-.p-av{width:30px;height:30px;background:var(--em-50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--em-d)}
-.p-card{background:var(--g50);border-radius:14px;padding:16px;margin-bottom:12px}
-.p-card-label{font-size:9px;font-weight:700;color:var(--g500);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px}
-.p-card-val{font-family:'Outfit',sans-serif;font-size:26px;font-weight:800;color:var(--black);letter-spacing:-0.03em}
-.p-card-sub{font-size:11px;color:var(--win);font-weight:600;margin-top:2px}
-.p-trade-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--g100)}
-.p-trade-row:last-of-type{border:none}
-.p-pair{font-size:12px;font-weight:700;color:var(--black)}
-.p-pips{font-size:12px;font-weight:700}
-.p-btn{background:var(--em);color:var(--white);border:none;border-radius:12px;padding:14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;width:100%;cursor:pointer;margin-top:4px}
-
-/* ── FEATURES ── */
-.features{padding:96px 5%;background:var(--white)}
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
-.feature-card{
-  border-radius:20px;padding:32px;border:1.5px solid var(--g100);
-  background:var(--white);transition:all 0.3s;position:relative;overflow:hidden;
-}
-.feature-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--em),var(--em-l));
-  opacity:0;transition:opacity 0.3s;
-}
-.feature-card:hover{border-color:var(--em-100);box-shadow:0 12px 40px rgba(5,150,105,0.1);transform:translateY(-4px)}
-.feature-card:hover::before{opacity:1}
-.feature-icon{font-size:28px;margin-bottom:16px}
-.feature-title{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:var(--black);margin-bottom:8px;letter-spacing:-0.02em}
-.feature-desc{font-size:14px;line-height:1.65;color:var(--g700)}
-.feature-tag{display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;margin-top:14px;letter-spacing:0.06em}
-.tag-free{background:var(--em-50);color:var(--em-d)}
-.tag-pro{background:var(--forest);color:var(--em-l)}
-
-/* ── PRICING ── */
-.pricing{padding:96px 5%;background:var(--g50)}
-.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:56px auto 0}
-.price-card{
-  border-radius:24px;padding:40px;border:1.5px solid var(--g100);
-  background:var(--white);position:relative;
-}
-.price-card.popular{
-  border-color:var(--em);
-  box-shadow:0 16px 48px rgba(5,150,105,0.15);
-}
-.popular-badge{
-  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
-  background:var(--em);color:var(--white);
-  font-size:11px;font-weight:700;padding:5px 16px;border-radius:100px;
-  letter-spacing:0.06em;white-space:nowrap;
-}
-.price-plan{font-size:12px;font-weight:700;color:var(--g500);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px}
-.price-amount{font-family:'Outfit',sans-serif;font-size:52px;font-weight:900;letter-spacing:-0.04em;color:var(--black);line-height:1}
-.price-amount sup{font-size:22px;vertical-align:top;margin-top:10px}
-.price-period{font-size:14px;color:var(--g500);margin-top:4px;font-weight:400}
-.price-divider{height:1px;background:var(--g100);margin:24px 0}
-.price-features{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
-.price-feature{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--g700)}
-.price-feature .check{color:var(--em);font-weight:700;flex-shrink:0;margin-top:1px}
-.price-feature .cross{color:var(--g300);flex-shrink:0;margin-top:1px}
-.price-btn{
-  width:100%;padding:15px;border-radius:12px;
-  font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;
-  border:none;cursor:pointer;transition:all 0.2s;
-}
-.price-btn-primary{background:var(--em);color:var(--white)}
-.price-btn-primary:hover{background:var(--em-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(5,150,105,0.3)}
-.price-btn-secondary{background:var(--g50);color:var(--black);border:1.5px solid var(--g200)}
-.price-btn-secondary:hover{border-color:var(--em);color:var(--em)}
-
-/* ── TESTIMONIALS ── */
-.testimonials{padding:96px 5%;background:var(--white)}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
-.testi-card{
-  border:1.5px solid var(--g100);border-radius:20px;padding:28px;
-  background:var(--white);transition:all 0.3s;
-}
-.testi-card:hover{border-color:var(--em-100);box-shadow:0 8px 32px rgba(5,150,105,0.08)}
-.testi-stars{color:var(--be);font-size:14px;margin-bottom:16px;letter-spacing:2px}
-.testi-text{font-size:14px;line-height:1.7;color:var(--g700);margin-bottom:20px;font-style:italic}
-.testi-author{display:flex;align-items:center;gap:12px}
-.testi-avatar{width:40px;height:40px;border-radius:50%;background:var(--em-50);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--em-d)}
-.testi-name{font-size:14px;font-weight:700;color:var(--black)}
-.testi-country{font-size:12px;color:var(--g500)}
-
-/* ── CTA FINAL ── */
-.cta-final{
-  padding:96px 5%;
-  background:var(--forest);
-  position:relative;overflow:hidden;
-}
-.cta-final::before{
-  content:'';position:absolute;
-  width:600px;height:600px;
-  background:radial-gradient(circle,rgba(16,185,129,0.15) 0%,transparent 60%);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  pointer-events:none;
-}
-.cta-inner{max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:1}
-.cta-tag{font-size:11px;font-weight:700;color:var(--em-l);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:20px}
-.cta-h2{font-family:'Outfit',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:900;letter-spacing:-0.04em;line-height:1.05;color:var(--white);margin-bottom:20px}
-.cta-h2 span{color:var(--em-l)}
-.cta-sub{font-size:16px;line-height:1.7;color:rgba(255,255,255,0.6);margin-bottom:40px}
-.cta-form{display:flex;gap:10px;max-width:480px;margin:0 auto 16px;flex-wrap:wrap}
-.cta-input{
-  flex:1;min-width:200px;
-  background:rgba(255,255,255,0.08);
-  border:1.5px solid rgba(255,255,255,0.15);
-  border-radius:10px;padding:14px 18px;
-  font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:var(--white);
-  outline:none;transition:border-color 0.2s;
-}
-.cta-input::placeholder{color:rgba(255,255,255,0.35)}
-.cta-input:focus{border-color:var(--em-l)}
-.cta-btn{
-  background:var(--em);color:var(--white);
-  font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;
-  padding:14px 28px;border-radius:10px;border:none;cursor:pointer;
-  transition:all 0.2s;white-space:nowrap;
-}
-.cta-btn:hover{background:var(--em-l);transform:translateY(-2px)}
-.cta-note{font-size:12px;color:rgba(255,255,255,0.35)}
-
-/* SUCCESS STATE */
-.success-msg{
-  display:none;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);
-  border-radius:12px;padding:16px 24px;color:var(--em-l);
-  font-size:14px;font-weight:600;text-align:center;margin-top:12px;
-}
-
-/* ── FOOTER ── */
-footer{background:var(--black);padding:48px 5% 32px}
-.footer-inner{max-width:1200px;margin:0 auto}
-.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;flex-wrap:wrap;gap:32px}
-.footer-logo{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.04em;color:var(--white)}
-.footer-logo span{color:var(--em)}
-.footer-tagline{font-size:13px;color:rgba(255,255,255,0.35);margin-top:6px}
-.footer-links{display:flex;gap:48px;flex-wrap:wrap}
-.footer-col{}
-.footer-col-title{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px}
-.footer-link{display:block;font-size:13px;color:rgba(255,255,255,0.55);text-decoration:none;margin-bottom:10px;transition:color 0.2s}
-.footer-link:hover{color:var(--em-l)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
-.footer-legal{display:flex;gap:20px}
-.footer-legal a{font-size:12px;color:rgba(255,255,255,0.25);text-decoration:none}
-.footer-legal a:hover{color:rgba(255,255,255,0.5)}
-
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;gap:48px}
-  .hero-right{display:flex;justify-content:center}
-  .hero-right .dashboard-card{max-width:360px;width:100%}
-  .stats-inner{grid-template-columns:repeat(2,1fr)}
-  .problems-grid,.features-grid,.testi-grid{grid-template-columns:1fr}
-  .solution-grid{grid-template-columns:1fr}
-  .phone-wrap{display:none}
-  .pricing-grid{grid-template-columns:1fr;max-width:400px}
-  .nav-links{display:none}
-  .nav-mobile-btn{display:block}
-  .footer-top{flex-direction:column}
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;min-height:auto;padding:110px 6% 60px;text-align:center;gap:48px}
+  .sub,.lead{margin:0 auto}
+  .sub{margin-bottom:40px}
+  .cta-row,.nt{justify-content:center}
+  .avs{justify-content:center}
+  .pw{order:-1}
+  .pc{grid-template-columns:1fr}
+  .sg{grid-template-columns:1fr;gap:48px}
+  .fg{grid-template-columns:1fr 1fr}
+  .pgrid{grid-template-columns:1fr;max-width:420px}
+  .tg{grid-template-columns:1fr}
+  .si{grid-template-columns:repeat(2,1fr)}
+  .ft{grid-template-columns:1fr 1fr}
+  .nl{display:none}
+  .nm{display:flex}
 }
 @media(max-width:600px){
-  nav{padding:0 24px}
-  .hero{padding:100px 24px 64px}
-  .problem,.solution,.features,.pricing,.testimonials,.cta-final{padding:64px 24px}
-  .stats-banner{padding:40px 24px}
-  .footer-inner{padding:0}
-  .stats-inner{grid-template-columns:repeat(2,1fr);gap:16px}
-  .stat-num{font-size:32px}
-  .hero-form{flex-direction:column}
-  .hero-btn{width:100%}
-  .cta-form{flex-direction:column}
-  .cta-btn{width:100%}
+  .fg{grid-template-columns:1fr}
+  .ft{grid-template-columns:1fr}
+  .fb{flex-direction:column;align-items:flex-start}
+  .phone{width:220px}
 }
 </style>
-<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABkElEQVR4nO2bwY6DMAxETbXdf4UPgn/dHronS9QlxDEhdmK/E61aOjOZQCSaCRrxXOd3yedfyzbdpWXPbT9SajjHXYFUP2lt45TaQVQ72d3GKbWCuHyS1sYpV4MQf1nbOEUaxEPyJWvmAeSaigOwaB6RaGPXxrLxI7hTgtWA3swD8DVnA+jRPMLRLroIjsRpAD2PPpLzkAxgBPPImZfDAEYyj6Q8ub8GfN0ruaP/N6/11Vzkd1uyn6HrA/cN+AhgxLlPoR6jAXjgYfSRvddoAICv0UfQczRAW4A2EYDH+Y881/k9tQpAsnTmLG2vElNAW4A2EYC2AG0iAG0B2kQA2gK0iQC0BWjzaPVvLIu8lm2KBmgL0CYCAGj3r0xLoOdoAB54asHeazRg/8JDC+LpMOErgJFbcOQtGnD05ogtSHlKNmCkEM68nE6BEULIefhpJaTFUx4J2Ytgzy3gaGfdBXoMgau52Jj1p8mlg1W8DrDcBok20ULIYghSTbFtrpYQtxsnKW63zlLcbp5OYXX7/D/NuJ14XqTjxgAAAABJRU5ErkJggg==">
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Trad<span>uly</span></a>
-  <div class="nav-links">
-    <a href="#features" class="nav-link">Fonctionnalités</a>
-    <a href="#pricing" class="nav-link">Tarifs</a>
-    <a href="#" class="nav-link">À propos</a>
-    <a href="#waitlist" class="nav-cta">Rejoindre la beta →</a>
-  </div>
-  <button class="nav-mobile-btn" aria-label="Menu">
-    <span class="hamburger"></span>
-  </button>
+  <a href="#" class="logo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#34d399"/>
+          <stop offset="100%" stop-color="#059669"/>
+        </linearGradient>
+      </defs>
+      <line x1="12" y1="1" x2="12" y2="5" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
+      <rect x="7" y="5" width="10" height="14" rx="2.5" fill="url(#cg)"/>
+      <rect x="9" y="7" width="3" height="4" rx="1" fill="rgba(255,255,255,0.22)"/>
+      <line x1="12" y1="19" x2="12" y2="23" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-t"><span class="w">Trad</span><span class="g">uly</span></span>
+  </a>
+  <ul class="nl">
+    <li><a href="#prob">Pourquoi Traduly</a></li>
+    <li><a href="#feat">Fonctionnalités</a></li>
+    <li><a href="#prix">Tarifs</a></li>
+  </ul>
+  <a href="https://app.traduly.com" class="nbtn">Rejoindre la bêta <span class="arr">→</span></a>
+  <a href="https://app.traduly.com" class="nbtn nm">Bêta →</a>
 </nav>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-inner">
-    <span class="ticker-item">Import MT4/MT5 automatique <span>✦</span></span>
-    <span class="ticker-item">Suivi psychologie du trader <span>✦</span></span>
-    <span class="ticker-item">Mobile-first <span>✦</span></span>
-    <span class="ticker-item">En français <span>✦</span></span>
-    <span class="ticker-item">9,99$/mois <span>✦</span></span>
-    <span class="ticker-item">Wave · Orange Money · Carte Visa <span>✦</span></span>
-    <span class="ticker-item">Import MT4/MT5 automatique <span>✦</span></span>
-    <span class="ticker-item">Suivi psychologie du trader <span>✦</span></span>
-    <span class="ticker-item">Mobile-first <span>✦</span></span>
-    <span class="ticker-item">En français <span>✦</span></span>
-    <span class="ticker-item">9,99$/mois <span>✦</span></span>
-    <span class="ticker-item">Wave · Orange Money · Carte Visa <span>✦</span></span>
-  </div>
-</div>
-
 <!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-inner">
-
-    <div class="hero-left">
-      <div class="hero-badge fade-up d1">
-        <span class="hero-badge-dot"></span>
-        Beta bientôt disponible
-      </div>
-
-      <h1 class="hero-h1 fade-up d2">
-        <span class="line">Le journal qui</span>
-        <span class="line">journalise tes trades</span>
-        <span class="line em">automatiquement.</span>
-      </h1>
-
-      <p class="hero-sub fade-up d3">
-        Traduly importe tes trades depuis MT4/MT5 sans effort.
-        Tu n'as plus qu'à ajouter tes <strong>émotions en 1 tap</strong>
-        — même après une perte.
-      </p>
-
-      <div class="fade-up d4" id="waitlist">
-        <div class="hero-form">
-          <input type="email" class="hero-input" id="heroEmail" placeholder="ton@email.com">
-          <button class="hero-btn" onclick="submitEmail('heroEmail','heroSuccess')">
-            Rejoindre la beta →
-          </button>
-        </div>
-        <div class="hero-form-note">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Gratuit · Zéro spam · Accès anticipé garanti
-        </div>
-        <div class="success-msg" id="heroSuccess">
-          🎉 Tu es sur la liste ! On te prévient en premier au lancement.
-        </div>
-      </div>
-
-      <div class="hero-proof fade-up d5">
-        <div class="proof-avatars">
-          <div class="proof-avatar">KO</div>
-          <div class="proof-avatar">AM</div>
-          <div class="proof-avatar">SB</div>
-          <div class="proof-avatar">DT</div>
-          <div class="proof-avatar">+</div>
-        </div>
-        <p class="proof-text"><strong>70+ traders</strong> utilisent déjà la v1 — rejoins-les</p>
-      </div>
+<section class="hero">
+  <div>
+    <div class="eyebrow r"><span class="dot"></span>81 traders sur la v1 — bêta ouverte</div>
+    <h1 class="r d1">Comprends enfin<br><span class="ac">pourquoi tu perds.</span></h1>
+    <p class="sub r d2">Traduly analyse tes trades, détecte tes biais psychologiques et te dit <strong>ce que ta prop firm ne te dira jamais.</strong> En français. Sur mobile.</p>
+    <div class="cta-row r d3">
+      <a href="https://app.traduly.com" class="btn">Rejoindre la bêta gratuitement <span class="arr">→</span></a>
     </div>
+    <p class="nt r d3">Accès gratuit · Aucune carte requise</p>
+    <div class="avs r">
+      <div class="avstack">
+        <div class="av" style="background:linear-gradient(135deg,#16a34a,#059669)">KA</div>
+        <div class="av" style="background:linear-gradient(135deg,#0891b2,#0e7490)">MB</div>
+        <div class="av" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">PN</div>
+        <div class="av" style="background:linear-gradient(135deg,#dc2626,#b91c1c)">JT</div>
+        <div class="av" style="background:linear-gradient(135deg,#d97706,#b45309)">+</div>
+      </div>
+      <p class="avt"><strong>81 traders</strong> ont déjà utilisé la v1</p>
+    </div>
+  </div>
 
-    <!-- DASHBOARD MOCKUP -->
-    <div class="hero-right fade-up d3">
-      <div class="dashboard-card">
-        <div class="dash-header">
-          <div class="dash-logo">Trad<span>uly</span></div>
-          <div class="dash-user">
-            <div class="dash-avatar">CY</div>
-            <div class="dash-name">Cyril T.</div>
+  <div class="pw r">
+    <div class="phone">
+      <div class="phone-btn"></div><div class="phone-vol1"></div><div class="phone-vol2"></div><div class="pi"><div class="pi-cam"></div><div class="pi-mic"></div></div>
+      <div class="ps">
+        <div class="an">
+          <div style="display:flex;align-items:center;gap:5px">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <line x1="12" y1="1" x2="12" y2="5" stroke="#34d399" stroke-width="2.5" stroke-linecap="round"/>
+              <rect x="7" y="5" width="10" height="14" rx="2.5" fill="url(#cg)"/>
+              <line x1="12" y1="19" x2="12" y2="23" stroke="#059669" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <span class="alt"><span class="w">Trad</span><span class="g">uly</span></span>
           </div>
+          <div class="aav">BE</div>
         </div>
-        <div class="dash-stats">
-          <div class="dash-stat">
-            <div class="dash-stat-label">Win Rate</div>
-            <div class="dash-stat-val">62%</div>
-            <div class="dash-stat-change up">↑ +4% ce mois</div>
-          </div>
-          <div class="dash-stat">
-            <div class="dash-stat-label">Profit Factor</div>
-            <div class="dash-stat-val">1.84</div>
-            <div class="dash-stat-change up">↑ Bon niveau</div>
-          </div>
+        <div class="agr">
+          <div class="agn">Bonjour Benjamin</div>
+          <div class="agd">Lundi 18 Mai · Vue globale</div>
         </div>
-        <div class="dash-trades">
-          <div class="dash-trades-title">Derniers trades importés</div>
-          <div class="dash-trade">
-            <div class="trade-left">
-              <div class="trade-dot" style="background:var(--win)"></div>
-              <div>
-                <div class="trade-pair">EUR/USD</div>
-                <div class="trade-time">Importé · il y a 2h</div>
-              </div>
-            </div>
-            <div>
-              <div class="trade-result up">+42 pips</div>
-              <div class="trade-emotion">😌 Sérénité</div>
-            </div>
-          </div>
-          <div class="dash-trade">
-            <div class="trade-left">
-              <div class="trade-dot" style="background:var(--loss)"></div>
-              <div>
-                <div class="trade-pair">GBP/JPY</div>
-                <div class="trade-time">Importé · il y a 5h</div>
-              </div>
-            </div>
-            <div>
-              <div class="trade-result down">-18 pips</div>
-              <div class="trade-emotion">😤 Impulsion</div>
-            </div>
-          </div>
-          <div class="dash-trade">
-            <div class="trade-left">
-              <div class="trade-dot" style="background:var(--win)"></div>
-              <div>
-                <div class="trade-pair">GOLD</div>
-                <div class="trade-time">Importé · hier</div>
-              </div>
-            </div>
-            <div>
-              <div class="trade-result up">+31 pips</div>
-              <div class="trade-emotion">😌 Sérénité</div>
-            </div>
-          </div>
+        <div class="ai">
+          <span class="ai-ic">⚠️</span>
+          <div class="ai-tx">Tu perds <strong>3× plus en Impulsion</strong>. Analyse avant de continuer.</div>
         </div>
-        <div class="dash-psychology">
-          <div class="dash-psy-title">Psychologie ce mois</div>
-          <div class="psy-bars">
-            <div class="psy-bar-row">
-              <div class="psy-label">Sérénité</div>
-              <div class="psy-track"><div class="psy-fill" style="width:60%"></div></div>
-              <div class="psy-val">6</div>
-            </div>
-            <div class="psy-bar-row">
-              <div class="psy-label">Hésitation</div>
-              <div class="psy-track"><div class="psy-fill" style="width:30%;background:var(--be)"></div></div>
-              <div class="psy-val">3</div>
-            </div>
-            <div class="psy-bar-row">
-              <div class="psy-label">Impulsion</div>
-              <div class="psy-track"><div class="psy-fill" style="width:10%;background:var(--loss)"></div></div>
-              <div class="psy-val">1</div>
+        <div class="ams">
+          <div class="am"><div class="aml">Win Rate</div><div class="amv pos">62%</div><div class="ams2">↑ +4% ce mois</div></div>
+          <div class="am"><div class="aml">Profit Net</div><div class="amv pos">+$412</div><div class="ams2">47 trades</div></div>
+        </div>
+        <!-- EQUITY CURVE -->
+        <div class="atrs">
+          <div class="atrt">Courbe d'equity</div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+            <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:16px;color:#fff;letter-spacing:-0.03em">$4 818</span>
+            <span style="font-size:9px;color:#34d399;font-weight:600">↑ +3,2% ce mois</span>
+          </div>
+          <svg viewBox="0 0 200 52" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
+            <defs>
+              <linearGradient id="eq" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#34d399" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0 42 C20 40 35 38 50 34 C65 30 75 28 90 24 C105 20 115 22 130 20 C145 18 160 16 175 14 C185 13 192 12 200 11" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <path d="M0 42 C20 40 35 38 50 34 C65 30 75 28 90 24 C105 20 115 22 130 20 C145 18 160 16 175 14 C185 13 192 12 200 11 L200 52 L0 52 Z" fill="url(#eq)"/>
+            <circle cx="200" cy="11" r="3" fill="#34d399"/>
+          </svg>
+        </div>
+
+        <!-- DISCIPLINE SCORE -->
+        <div class="apsy">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <span class="apsyt" style="margin-bottom:0">Score Discipline</span>
+            <span style="font-family:Outfit,sans-serif;font-size:13px;font-weight:800;color:#f59e0b;letter-spacing:-0.02em">68%</span>
+          </div>
+          <!-- Donut progress -->
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <svg width="36" height="36" viewBox="0 0 36 36">
+              <circle cx="18" cy="18" r="14" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="4"/>
+              <circle cx="18" cy="18" r="14" fill="none" stroke="#f59e0b" stroke-width="4" stroke-dasharray="60 88" stroke-dashoffset="22" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <div style="font-size:9px;color:rgba(255,255,255,.4);margin-bottom:2px">Basé sur le respect de ton plan</div>
+              <div style="font-size:9px;color:rgba(255,255,255,.55)">7 trades plan respecté · 3 hors plan</div>
             </div>
           </div>
+          <div class="er"><span class="el">Sérénité</span><div class="et"><div class="ef" style="width:75%;background:#34d399"></div></div><span class="ec">6</span></div>
+          <div class="er"><span class="el">Hésitation</span><div class="et"><div class="ef" style="width:40%;background:#f59e0b"></div></div><span class="ec">3</span></div>
+          <div class="er"><span class="el">Impulsion</span><div class="et"><div class="ef" style="width:12%;background:#f87171"></div></div><span class="ec">1</span></div>
+        </div>
+        <div class="abn">
+          <div class="abt"><span class="abti on">⊞</span><span class="abtl on">Dashboard</span></div>
+          <div class="abt"><span class="abti">📖</span><span class="abtl">Journal</span></div>
+          <div class="abt"><span class="abti">🏆</span><span class="abtl">Challenge</span></div>
+          <div class="abt"><span class="abti">📊</span><span class="abtl">Analyse</span></div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- STATS BANNER -->
-<div class="stats-banner">
-  <div class="stats-inner">
-    <div class="stat-item">
-      <div class="stat-num">70<span class="em">+</span></div>
-      <div class="stat-desc">Traders sur la v1</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">10<span class="em">j</span></div>
-      <div class="stat-desc">Depuis le lancement</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">9<span class="em">,99$</span></div>
-      <div class="stat-desc">Par mois en Pro</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">60<span class="em">s</span></div>
-      <div class="stat-desc">Pour journaliser un trade</div>
+
+
+<!-- PROBLÈME -->
+<div class="secf" id="prob">
+  <div class="si2">
+    <div class="r"><span class="tag">Le problème</span></div>
+    <h2 class="h2 r">Pourquoi la plupart des traders<br>n'ont <span class="ac">pas de journal</span></h2>
+    <p class="lead r">La vérité que personne ne dit : ce n'est pas un manque de discipline. C'est un problème d'outil.</p>
+    <div class="pc">
+      <div class="pcard r"><span class="pe">😔</span><div class="pt">Après une perte, tu veux oublier</div><p class="pb">Ouvrir un Google Sheet pour documenter ta douleur ? Psychologiquement impossible. Le journal reste vide. Tu répètes les mêmes erreurs.</p></div>
+      <div class="pcard r d1"><span class="pe">📱</span><div class="pt">Tu trades sur mobile, tu journalises sur PC</div><p class="pb">Déjà ouvert Pocket Option ou Deriv sur ton téléphone ? Aller remplir un tableau après sur ton ordi, c'est trop de friction. Ça n'arrive jamais.</p></div>
+      <div class="pcard r d2"><span class="pe">🌍</span><div class="pt">Les outils pro sont en anglais et trop chers</div><p class="pb">TradeZella c'est 30–50$/mois, en anglais, pensé pour les traders américains. Pas pour toi à Abidjan, Douala ou Ouagadougou.</p></div>
     </div>
   </div>
 </div>
-
-<!-- PROBLEM -->
-<section class="problem">
-  <div class="section-inner">
-    <div class="section-tag">Le problème</div>
-    <h2 class="section-h2">Pourquoi la plupart des traders n'ont pas de journal</h2>
-    <p class="section-sub">La vérité que personne ne dit : ce n'est pas un manque de discipline. C'est un problème d'outil.</p>
-    <div class="problems-grid">
-      <div class="problem-card">
-        <div class="problem-icon">😔</div>
-        <div class="problem-title">Après une perte, tu veux oublier</div>
-        <div class="problem-desc">Ouvrir Excel pour documenter ta douleur ? Impossible psychologiquement. Le journal reste vide. Tu répètes les mêmes erreurs.</div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">📱</div>
-        <div class="problem-title">Tu trades sur mobile, tu journalises sur PC</div>
-        <div class="problem-desc">Déjà ouvert Pocket Option ou Deriv sur ton téléphone ? Aller remplir un Google Sheet après sur ton ordi, c'est trop de friction.</div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">🇬🇧</div>
-        <div class="problem-title">Les outils pro sont en anglais et trop chers</div>
-        <div class="problem-desc">TradeZella c'est 30-50$/mois, en anglais, pensé pour les traders américains. Pas pour toi à Abidjan, Dakar ou Ouagadougou.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- SOLUTION -->
-<section class="solution" id="features">
-  <div class="section-inner">
-    <div class="solution-grid">
-      <div>
-        <div class="section-tag">La solution Traduly</div>
-        <h2 class="section-h2">Tes trades s'importent. Toi tu progresses.</h2>
-        <p class="section-sub" style="margin-bottom:40px">Traduly fait le travail fastidieux à ta place pour que tu puisses te concentrer sur ce qui compte : comprendre et progresser.</p>
-        <div class="solution-steps">
-          <div class="solution-step">
-            <div class="step-num">1</div>
-            <div class="step-content">
-              <div class="step-title">Tu trades sur MT4 ou MT5</div>
-              <div class="step-desc">Comme d'habitude. Rien ne change dans ta routine de trading.</div>
-            </div>
-          </div>
-          <div class="solution-step">
-            <div class="step-num">2</div>
-            <div class="step-content">
-              <div class="step-title">Traduly importe automatiquement</div>
-              <div class="step-desc">Paire, direction, résultat, durée — tout est récupéré sans que tu touches quoi que ce soit.</div>
-            </div>
-          </div>
-          <div class="solution-step">
-            <div class="step-num">3</div>
-            <div class="step-content">
-              <div class="step-title">Tu ajoutes ton émotion en 1 tap</div>
-              <div class="step-desc">Sérénité, Hésitation, Impulsion, Euphorie. 5 secondes sur mobile. Même après une perte.</div>
-            </div>
-          </div>
-          <div class="solution-step">
-            <div class="step-num">4</div>
-            <div class="step-content">
-              <div class="step-title">Tu vois tes patterns émerger</div>
-              <div class="step-desc">Win Rate, Profit Factor, discipline — ton dashboard révèle exactement ce qui fait ta force et ta faiblesse.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="phone-wrap">
-        <div class="phone">
-          <div class="phone-notch"></div>
-          <div class="phone-nav-bar">
-            <div class="p-logo">Trad<span>uly</span></div>
-            <div class="p-av">CY</div>
-          </div>
-          <div class="p-card">
-            <div class="p-card-label">Equity Growth</div>
-            <div class="p-card-val">+12,4%</div>
-            <div class="p-card-sub">↑ Ce mois · 47 trades</div>
-          </div>
-          <div style="font-size:9px;font-weight:700;color:var(--g500);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px">Trades importés aujourd'hui</div>
-          <div class="p-trade-row">
-            <div class="p-pair">EUR/USD 🟢</div>
-            <div class="p-pips up">+42 pips</div>
-          </div>
-          <div class="p-trade-row">
-            <div class="p-pair">GBP/JPY 🔴</div>
-            <div class="p-pips down">-18 pips</div>
-          </div>
-          <div class="p-trade-row">
-            <div class="p-pair">GOLD 🟢</div>
-            <div class="p-pips up">+31 pips</div>
-          </div>
-          <button class="p-btn">+ Ajouter mon émotion</button>
-        </div>
+<section class="sec">
+  <div class="r"><span class="tag">La solution</span></div>
+  <h2 class="h2 r">Tes trades analysés.<br><span class="ac">Toi tu progresses.</span></h2>
+  <div class="sg">
+    <div class="steps">
+      <div class="step r"><div class="snum">1</div><div><h3>Tu saisis ou importes ton trade</h3><p>Saisie manuelle rapide sur mobile, ou import direct depuis MT5. Paire, direction, résultat — tout en quelques secondes.</p></div></div>
+      <div class="step r d1"><div class="snum">2</div><div><h3>Tu ajoutes ton émotion en 1 tap</h3><p>Sérénité, Hésitation, Impulsion, Euphorie. 5 secondes sur mobile. Même après une perte — surtout après une perte.</p></div></div>
+      <div class="step r d2"><div class="snum">3</div><div><h3>L'IA révèle tes patterns cachés</h3><p>Traduly analyse ton historique et identifie tes biais : dans quel état tu gagnes, quand tu dérapes, pourquoi tu répètes les mêmes erreurs.</p></div></div>
+      <div class="step r d3"><div class="snum">4</div><div><h3>Tu comprends. Tu t'améliores.</h3><p>Win Rate, Profit Factor, discipline — ton dashboard révèle exactement ce qui fait ta force et ta faiblesse. Mois après mois.</p></div></div>
+    </div>
+    <div class="r">
+      <div class="ic">
+        <div class="ich"><div class="ico">🧠</div><div><div class="ict">Analyse IA — Ce mois</div><div class="ics">Basée sur 47 trades</div></div></div>
+        <div class="ibb">Tu gagnes <strong>3× plus souvent en état de Sérénité</strong>. Tes pertes en Impulsion représentent 68% de ton drawdown total. Tu prends systématiquement des positions trop grandes le vendredi soir.</div>
+        <div class="itags"><span class="itag">Pattern identifié</span><span class="itag">Biais vendredi</span><span class="itag">Gestion du risque</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section class="features">
-  <div class="section-inner">
-    <div class="section-tag">Fonctionnalités</div>
-    <h2 class="section-h2">Tout ce dont tu as besoin pour progresser</h2>
-    <p class="section-sub">Conçu pour les traders francophones débutants et intermédiaires.</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <div class="feature-title">Import automatique MT4/MT5</div>
-        <div class="feature-desc">Connecte ton compte une fois. Tous tes trades apparaissent automatiquement dans Traduly. Zéro saisie manuelle.</div>
-        <span class="feature-tag tag-pro">PRO</span>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🧠</div>
-        <div class="feature-title">Suivi psychologique</div>
-        <div class="feature-desc">Sérénité, Hésitation, Impulsion, Euphorie. Identifie l'état dans lequel tu es le plus performant.</div>
-        <span class="feature-tag tag-free">GRATUIT</span>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <div class="feature-title">Dashboard analytics</div>
-        <div class="feature-desc">Win Rate, Profit Factor, Drawdown Max, Equity Growth. Vois ta progression mois après mois.</div>
-        <span class="feature-tag tag-free">GRATUIT</span>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📱</div>
-        <div class="feature-title">100% Mobile-first</div>
-        <div class="feature-desc">Conçu pour être utilisé sur ton téléphone, juste après ton trade. Pas sur un PC dans une heure.</div>
-        <span class="feature-tag tag-free">GRATUIT</span>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎯</div>
-        <div class="feature-title">Suivi de la discipline</div>
-        <div class="feature-desc">Plan respecté vs Hors plan. Mesure objectivement ta capacité à suivre ta stratégie.</div>
-        <span class="feature-tag tag-free">GRATUIT</span>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📄</div>
-        <div class="feature-title">Export PDF</div>
-        <div class="feature-desc">Génère un rapport complet de ta performance. Partage avec ton mentor ou garde pour ton suivi.</div>
-        <span class="feature-tag tag-pro">PRO</span>
-      </div>
+<div class="secf" id="feat">
+  <div class="si2">
+    <div class="r"><span class="tag">Fonctionnalités</span></div>
+    <h2 class="h2 r">Tout ce dont tu as besoin<br>pour <span class="ac">progresser</span></h2>
+    <p class="lead r">Conçu pour les traders francophones qui veulent comprendre ce qui les fait gagner — et ce qui les fait perdre.</p>
+    <div class="fg">
+      <div class="fc r"><div class="fc-badge fr">Gratuit</div><div class="fic">📔</div><div class="fct">Journal mobile</div><p class="fcb">Saisis tes trades en quelques secondes depuis ton téléphone. Juste après ton trade. Même après une perte.</p><div class="fc-accent"></div></div>
+      <div class="fc r d1"><div class="fc-badge fr">Gratuit</div><div class="fic">🧠</div><div class="fct">Suivi psychologique</div><p class="fcb">Sérénité, Hésitation, Impulsion, Euphorie. Identifie l'état dans lequel tu es le plus performant.</p><div class="fc-accent"></div></div>
+      <div class="fc r d2"><div class="fc-badge fr">Gratuit</div><div class="fic">📊</div><div class="fct">Dashboard analytics</div><p class="fcb">Win Rate, Profit Factor, Drawdown Max, Equity Growth. Vois ta progression mois après mois.</p><div class="fc-accent"></div></div>
+      <div class="fc r"><div class="fc-badge pr">Premium</div><div class="fic">⚡</div><div class="fct">Import MT4/MT5</div><p class="fcb">Importe ton historique MT4/MT5 en quelques secondes. Tes trades apparaissent instantanément — sans remplir case par case.</p><div class="fc-accent"></div></div>
+      <div class="fc r d1"><div class="fc-badge pr">Premium</div><div class="fic">🤖</div><div class="fct">Insights IA complets</div><p class="fcb">Analyse approfondie de tes patterns, rapport mensuel IA, détection de biais avancée.</p><div class="fc-accent"></div></div>
+      <div class="fc r d2"><div class="fc-badge fr">Gratuit</div><div class="fic">🎯</div><div class="fct">Challenge prop firm</div><p class="fcb">Prépare ton challenge FTMO et autres prop firms avec un suivi de discipline adapté.</p><div class="fc-accent"></div></div>
     </div>
   </div>
+</div>
+
+<!-- TARIFS -->
+<section class="sec" id="prix" style="text-align:center">
+  <div class="r"><span class="tag">Tarifs</span></div>
+  <h2 class="h2 r">Simple. Accessible. <span class="ac">Honnête.</span></h2>
+  <p class="lead r" style="margin:0 auto">Aucun engagement. Annule quand tu veux.</p>
+
+  <div class="ptog r">
+    <span>Mensuel</span>
+    <button class="tog" id="tog" onclick="sw()" aria-label="Basculer annuel"><div class="tth"></div></button>
+    <span>Annuel <span class="spill">−25%</span></span>
+  </div>
+
+  <div class="prix-wrap r">
+
+    <!-- Badge flottant au-dessus -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;position:relative">
+      <div></div>
+      <div></div>
+      <div style="display:flex;justify-content:center;padding:10px 24px 0">
+        <span class="prix-badge">⭐ Le plus populaire</span>
+      </div>
+    </div>
+
+    <!-- Header row: plans -->
+    <div class="prix-header">
+      <div class="prix-col-label">
+        <div class="prix-plan-name">Fonctionnalité</div>
+      </div>
+      <div class="prix-col-label">
+        <div class="prix-plan-name">Gratuit</div>
+        <div class="prix-amount">
+          <span class="prix-num">0</span>
+          <span class="prix-cur">FCFA</span>
+        </div>
+        <div class="prix-per">Pour toujours</div>
+        <a href="https://app.traduly.com" class="prix-btn-free">Commencer →</a>
+      </div>
+      <div class="prix-col-label highlight">
+        <div class="prix-plan-name">Premium</div>
+        <div class="prix-amount">
+          <span class="prix-num" id="pn">5 000</span>
+          <span class="prix-cur">FCFA</span>
+        </div>
+        <div class="prix-per" id="pp">par mois</div>
+        <a href="https://app.traduly.com" class="prix-btn-pro">Rejoindre la bêta →</a>
+      </div>
+    </div>
+
+    <!-- Feature rows -->
+    <div class="prix-row">
+      <div class="prix-cell feat-name">Journal illimité</div>
+      <div class="prix-cell"><span class="prix-check">✓</span></div>
+      <div class="prix-cell highlight"><span class="prix-check">✓</span></div>
+    </div>
+    <div class="prix-row">
+      <div class="prix-cell feat-name">Suivi des émotions</div>
+      <div class="prix-cell"><span class="prix-check">✓</span></div>
+      <div class="prix-cell highlight"><span class="prix-check">✓</span></div>
+    </div>
+    <div class="prix-row">
+      <div class="prix-cell feat-name">Dashboard analytics</div>
+      <div class="prix-cell"><span class="prix-check">✓</span> Basique</div>
+      <div class="prix-cell highlight"><span class="prix-check">✓</span> Avancé</div>
+    </div>
+    <div class="prix-row">
+      <div class="prix-cell feat-name">Challenge prop firm</div>
+      <div class="prix-cell"><span class="prix-check">✓</span> 1 challenge</div>
+      <div class="prix-cell highlight"><span class="prix-check">✓</span> Illimités</div>
+    </div>
+    <div class="prix-row">
+      <div class="prix-cell feat-name">Comptes & stratégies</div>
+      <div class="prix-cell"><span class="prix-check">✓</span> 2 comptes · 3 strat.</div>
+      <div class="prix-cell highlight"><span class="prix-check">✓</span> Illimités</div>
+    </div>
+    <div class="prix-row">
+      <div class="prix-cell feat-name">Détection tilt</div>
+      <div class="prix-cell"><span class="prix-check">✓</span> Basique</div>
+      <div class="prix-cell highlight"><span class="prix-check">✓</span> Avancée</div>
+    </div>
+    <div class="prix-row">
+      <div class="prix-cell feat-name">Import MT4/MT5</div>
+      <div class="prix-cell"><span class="prix-cross">×</span></div>
+      <div class="prix-cell highlight"><span class="prix-check">✓</span></div>
+    </div>
+    <div class="prix-row">
+      <div class="prix-cell feat-name">Insights IA</div>
+      <div class="prix-cell"><span class="prix-cross">×</span></div>
+      <div class="prix-cell highlight"><span class="prix-check">✓</span> Complets</div>
+    </div>
+    <div class="prix-row">
+      <div class="prix-cell feat-name">Rapport mensuel IA</div>
+      <div class="prix-cell"><span class="prix-cross">×</span></div>
+      <div class="prix-cell highlight"><span class="prix-check">✓</span></div>
+    </div>
+    <div class="prix-row">
+      <div class="prix-cell feat-name">Export CSV</div>
+      <div class="prix-cell"><span class="prix-cross">×</span></div>
+      <div class="prix-cell highlight"><span class="prix-check">✓</span></div>
+    </div>
+
+  </div>
+  <p class="pmeth r">Paiement sécurisé · Wave · Mobile Money · Carte bancaire</p>
 </section>
 
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <div class="section-inner">
-    <div style="text-align:center">
-      <div class="section-tag" style="display:inline-block">Tarifs</div>
-      <h2 class="section-h2">Simple. Accessible. Honnête.</h2>
-      <p class="section-sub" style="margin:0 auto 0">Aucun engagement. Annule quand tu veux.</p>
-    </div>
-    <div class="pricing-grid">
-
-      <div class="price-card">
-        <div class="price-plan">Gratuit</div>
-        <div class="price-amount"><sup>$</sup>0</div>
-        <div class="price-period">Pour toujours</div>
-        <div class="price-divider"></div>
-        <div class="price-features">
-          <div class="price-feature"><span class="check">✓</span> Saisie manuelle des trades</div>
-          <div class="price-feature"><span class="check">✓</span> Dashboard basique</div>
-          <div class="price-feature"><span class="check">✓</span> Suivi psychologie</div>
-          <div class="price-feature"><span class="check">✓</span> Historique 30 trades</div>
-          <div class="price-feature"><span class="cross">✗</span> Import auto MT4/MT5</div>
-          <div class="price-feature"><span class="cross">✗</span> Analytics avancés</div>
-          <div class="price-feature"><span class="cross">✗</span> Export PDF</div>
-        </div>
-        <button class="price-btn price-btn-secondary" onclick="scrollToWaitlist()">Commencer gratuitement</button>
-      </div>
-
-      <div class="price-card popular">
-        <div class="popular-badge">⭐ Le plus populaire</div>
-        <div class="price-plan">Pro</div>
-        <div class="price-amount"><sup>$</sup>9<span style="font-size:28px">,99</span></div>
-        <div class="price-period">par mois · Wave · Orange Money · Visa</div>
-        <div class="price-divider"></div>
-        <div class="price-features">
-          <div class="price-feature"><span class="check">✓</span> Tout le plan Gratuit</div>
-          <div class="price-feature"><span class="check">✓</span> <strong>Import auto MT4/MT5</strong></div>
-          <div class="price-feature"><span class="check">✓</span> Historique illimité</div>
-          <div class="price-feature"><span class="check">✓</span> Analytics avancés</div>
-          <div class="price-feature"><span class="check">✓</span> Export PDF des rapports</div>
-          <div class="price-feature"><span class="check">✓</span> Alertes psychologie</div>
-          <div class="price-feature"><span class="check">✓</span> Support prioritaire</div>
-        </div>
-        <button class="price-btn price-btn-primary" onclick="scrollToWaitlist()">Rejoindre la beta Pro →</button>
-      </div>
-
+<!-- TÉMOIGNAGES -->
+<div class="secf" id="testi">
+  <div class="si2">
+    <div class="r"><span class="tag">Témoignages</span></div>
+    <h2 class="h2 r">Ce que disent les traders<br>de <span class="ac">la v1</span></h2>
+    <p class="lead r">81 traders ont utilisé le <strong>Cyril Trading Journal V1</strong> sur Google Sheet. Voici leurs retours honnêtes.</p>
+    <div class="tg">
+      <div class="tcard r"><div class="stars">★★★★★</div><p class="tq">"Merci infiniment, enfin un journal en français."</p><div class="tau"><div class="tav" style="background:linear-gradient(135deg,#16a34a,#059669)">KA</div><div><div class="tan">Konan A.</div><div class="tal">🇨🇮 Abidjan, Côte d'Ivoire</div></div></div></div>
+      <div class="tcard r d1"><div class="stars">★★★★★</div><p class="tq">"Très bien fait mais j'ai galéré à créer ma propre copie."</p><div class="tau"><div class="tav" style="background:linear-gradient(135deg,#0891b2,#0e7490)">MB</div><div><div class="tan">Moussa B.</div><div class="tal">🇧🇫 Ouagadougou, Burkina Faso</div></div></div></div>
+      <div class="tcard r"><div class="stars">★★★★★</div><p class="tq">"Sur téléphone c'était compliqué, j'espère que la v2 règle ça."</p><div class="tau"><div class="tav" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">PN</div><div><div class="tan">Patrick N.</div><div class="tal">🇨🇲 Douala, Cameroun</div></div></div></div>
+      <div class="tcard r d1"><div class="stars">★★★★★</div><p class="tq">"La configuration m'a pris du temps mais le dashboard valait le coup."</p><div class="tau"><div class="tav" style="background:linear-gradient(135deg,#dc2626,#b91c1c)">JT</div><div><div class="tan">Jean-Marc T.</div><div class="tal">🇫🇷 Paris, France</div></div></div></div>
     </div>
   </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="section-inner">
-    <div class="section-tag">Témoignages</div>
-    <h2 class="section-h2">Ce que disent les traders de la v1</h2>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-text">"Enfin un journal que j'utilise vraiment. Avant j'avais honte de regarder mes stats. Maintenant je comprends pourquoi je perds sur certains trades."</div>
-        <div class="testi-author">
-          <div class="testi-avatar">AK</div>
-          <div>
-            <div class="testi-name">Abdou K.</div>
-            <div class="testi-country">🇸🇳 Dakar, Sénégal</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-text">"Le suivi psychologique a changé ma façon de trader. J'ai réalisé que je perdais 80% de mes trades en état d'Impulsion. Maintenant je m'arrête."</div>
-        <div class="testi-author">
-          <div class="testi-avatar">MB</div>
-          <div>
-            <div class="testi-name">Moussa B.</div>
-            <div class="testi-country">🇨🇮 Abidjan, Côte d'Ivoire</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-text">"J'attendais un journal comme ça depuis longtemps. En français, sur mobile, avec le suivi des émotions. L'import automatique va être un game changer."</div>
-        <div class="testi-author">
-          <div class="testi-avatar">FD</div>
-          <div>
-            <div class="testi-name">Fatou D.</div>
-            <div class="testi-country">🇧🇫 Ouagadougou, Burkina</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
 
 <!-- CTA FINAL -->
-<section class="cta-final">
-  <div class="cta-inner">
-    <div class="cta-tag">Rejoins la beta</div>
-    <h2 class="cta-h2">Arrête de trader <span>sans journal</span>.</h2>
-    <p class="cta-sub">Les traders qui tiennent un journal progressent. Les autres répètent les mêmes erreurs. Traduly rend ça facile — même après une perte.</p>
-    <div class="cta-form">
-      <input type="email" class="cta-input" id="ctaEmail" placeholder="ton@email.com">
-      <button class="cta-btn" onclick="submitEmail('ctaEmail','ctaSuccess')">
-        Rejoindre la beta →
-      </button>
-    </div>
-    <div class="success-msg" id="ctaSuccess" style="color:var(--em-l);background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.2)">
-      🎉 Tu es sur la liste ! On te prévient en premier au lancement.
-    </div>
-    <div class="cta-note" style="margin-top:12px">Gratuit · Accès anticipé · Zéro spam</div>
+<section class="ctaf">
+  <div class="ctai">
+    <h2 class="r">Arrête de trader<br>sans <em>te comprendre.</em></h2>
+    <p class="r">Les traders qui progressent savent pourquoi ils gagnent et pourquoi ils perdent. Traduly rend ça possible — même après une perte.</p>
+    <div class="r"><a href="https://app.traduly.com" class="btn">Rejoindre la bêta gratuitement <span class="arr">→</span></a></div>
+    <p class="ctan r">Accès gratuit · Aucune carte requise · En français</p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
+  <div class="fi">
+    <div class="ft">
       <div>
-        <div class="footer-logo">Trad<span>uly</span></div>
-        <div class="footer-tagline">Le journal de trading des traders francophones.</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <line x1="12" y1="1" x2="12" y2="5" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
+            <rect x="7" y="5" width="10" height="14" rx="2.5" fill="url(#cg)"/>
+            <line x1="12" y1="19" x2="12" y2="23" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div class="flt"><span class="w">Trad</span><span class="g">uly</span></div>
+        </div>
+        <p class="ftag">Le journal de trading intelligent des traders francophones.</p>
       </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <div class="footer-col-title">Produit</div>
-          <a href="#features" class="footer-link">Fonctionnalités</a>
-          <a href="#pricing" class="footer-link">Tarifs</a>
-          <a href="#" class="footer-link">Roadmap</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Communauté</div>
-          <a href="https://t.me/cyriltradingfx" target="_blank" class="footer-link">Telegram</a>
-          <a href="https://www.youtube.com/@cyriltrading" target="_blank" class="footer-link">YouTube</a>
-          <a href="#" class="footer-link">TikTok</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Légal</div>
-          <a href="#" class="footer-link">CGU</a>
-          <a href="#" class="footer-link">Confidentialité</a>
-          <a href="#" class="footer-link">Contact</a>
-        </div>
-      </div>
+      <div class="fcol"><h4>Produit</h4><ul><li><a href="#feat">Fonctionnalités</a></li><li><a href="#prix">Tarifs</a></li><li><a href="https://app.traduly.com">Accéder à l'app</a></li></ul></div>
+      <div class="fcol"><h4>Communauté</h4><ul><li><a href="https://t.me/cyriltradingfx">Telegram</a></li><li><a href="https://www.youtube.com/@cyriltrading">YouTube</a></li><li><a href="https://www.instagram.com/traduly_official/">Instagram</a></li></ul></div>
+      <div class="fcol"><h4>Légal</h4><ul><li><a href="https://www.traduly.com/legal.html">CGU</a></li><li><a href="https://www.traduly.com/legal.html">Confidentialité</a></li><li><a href="mailto:contact@traduly.com">Contact</a></li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2026 Traduly. Tous droits réservés.</div>
-      <div class="footer-legal">
-        <a href="#">CGU</a>
-        <a href="#">Confidentialité</a>
-      </div>
+    <div class="fb">
+      <p class="fcp">© 2026 Traduly. Tous droits réservés.</p>
+      <div class="fleg"><a href="https://www.traduly.com/legal.html">CGU</a><a href="https://www.traduly.com/legal.html">Confidentialité</a></div>
     </div>
   </div>
 </footer>
 
 <script>
-// Nav scroll effect
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);
-});
-
-// Email submission via Formspree
-async function submitEmail(inputId, successId){
-  const input = document.getElementById(inputId);
-  const success = document.getElementById(successId);
-  const email = input.value.trim();
-
-  // Validation
-  if(!email || !email.includes('@')){
-    input.style.borderColor='var(--loss)';
-    input.placeholder='Entre un email valide';
-    setTimeout(()=>{
-      input.style.borderColor='';
-      input.placeholder='ton@email.com';
-    },2000);
-    return;
-  }
-
-  // Disable button during submission
-  const btn = input.nextElementSibling;
-  const originalText = btn.textContent;
-  btn.textContent = 'Envoi...';
-  btn.disabled = true;
-  btn.style.opacity = '0.7';
-
-  try {
-    const response = await fetch('https://formspree.io/f/xdabldlg', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ email: email, source: inputId === 'heroEmail' ? 'Hero' : 'CTA Final' })
-    });
-
-    if(response.ok){
-      input.value = '';
-      success.style.display = 'block';
-      setTimeout(()=> success.style.display = 'none', 6000);
-    } else {
-      throw new Error('Erreur serveur');
-    }
-  } catch(err) {
-    input.style.borderColor = 'var(--loss)';
-    input.placeholder = 'Erreur — réessaie';
-    setTimeout(()=>{
-      input.style.borderColor = '';
-      input.placeholder = 'ton@email.com';
-    }, 3000);
-  } finally {
-    btn.textContent = originalText;
-    btn.disabled = false;
-    btn.style.opacity = '1';
-  }
+let on=false;
+function sw(){
+  on=!on;
+  document.getElementById('tog').classList.toggle('on',on);
+  document.getElementById('pn').textContent=on?'45 000':'5 000';
+  document.getElementById('pp').textContent=on?'par an':'par mois';
 }
-
-// Scroll to waitlist
-function scrollToWaitlist(){
-  document.getElementById('waitlist').scrollIntoView({behavior:'smooth'});
-}
-
-// Enter key on inputs
-document.addEventListener('keypress',(e)=>{
-  if(e.key==='Enter'){
-    if(document.activeElement.id==='heroEmail') submitEmail('heroEmail','heroSuccess');
-    if(document.activeElement.id==='ctaEmail') submitEmail('ctaEmail','ctaSuccess');
-  }
-});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:.12,rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>10));
 </script>
-
 </body>
 </html>
