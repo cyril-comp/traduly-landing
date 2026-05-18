@@ -69,7 +69,7 @@ h1 .ac{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-cli
 /* PHONE */
 .pw{display:flex;justify-content:center;align-items:center;position:relative}
 .pw::before{content:'';position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(22,163,74,.07) 0%,transparent 70%);pointer-events:none}
-.phone{width:248px;background:#1c1c1e;border-radius:46px;padding:0;box-shadow:0 0 0 1.5px rgba(255,255,255,.1),0 40px 80px rgba(0,0,0,.5),0 0 60px rgba(52,211,153,.05);animation:lev 5s ease-in-out infinite;position:relative;overflow:hidden}
+.phone{width:230px;background:#1c1c1e;border-radius:44px;padding:0;box-shadow:0 0 0 1.5px rgba(255,255,255,.1),0 32px 64px rgba(0,0,0,.5),0 0 48px rgba(52,211,153,.04);animation:lev 5s ease-in-out infinite;position:relative;overflow:hidden}
 .phone-btn{position:absolute;right:-3px;top:110px;width:3px;height:32px;background:#48484a;border-radius:0 2px 2px 0;z-index:10}
 .phone-vol1{position:absolute;left:-3px;top:80px;width:3px;height:28px;background:#48484a;border-radius:2px 0 0 2px;z-index:10}
 .phone-vol2{position:absolute;left:-3px;top:118px;width:3px;height:28px;background:#48484a;border-radius:2px 0 0 2px;z-index:10}
@@ -77,14 +77,14 @@ h1 .ac{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-cli
 .pi{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:100px;height:28px;background:#000;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:5px;z-index:20}
 .pi-cam{width:9px;height:9px;border-radius:50%;background:#1c1c1e;border:1.5px solid #2c2c2e;box-shadow:inset 0 0 0 2px #111}
 .pi-mic{width:36px;height:4px;border-radius:2px;background:#1a1a1c}
-.ps{background:#0f1014;border-radius:46px;overflow:hidden;padding:46px 13px 14px}
+.ps{background:#0f1014;border-radius:44px;overflow:hidden;padding:42px 12px 10px}
 .an{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;background:#0f1014;margin:0 -14px 14px;padding:14px 14px 10px;border-bottom:1px solid rgba(255,255,255,.05)}
 .alt{font-family:'Outfit',sans-serif;font-weight:800;font-size:15px;letter-spacing:-0.04em}
 .alt .w{color:#fff}.alt .g{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .aav{width:34px;height:34px;border-radius:50%;background:#1a2520;border:1.5px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:11px;font-weight:800;color:rgba(255,255,255,.85);letter-spacing:.02em}
-.agr{margin-bottom:14px}
-.agn{font-family:'Outfit',sans-serif;font-weight:800;font-size:15px;color:#fff;letter-spacing:-0.03em}
-.agd{font-size:10px;color:rgba(255,255,255,.35);margin-top:1px}
+.agr{margin-bottom:8px}
+.agn{font-family:'Outfit',sans-serif;font-weight:800;font-size:14px;color:#fff;letter-spacing:-0.03em}
+.agd{font-size:9px;color:rgba(255,255,255,.35);margin-top:0}
 .ai{background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.2);border-left:3px solid #fb923c;border-radius:9px;padding:8px 10px;margin-bottom:8px;display:flex;gap:6px;align-items:flex-start}
 .ai-ic{font-size:13px;flex-shrink:0;margin-top:1px}
 .ai-tx{font-size:10px;color:rgba(255,255,255,.75);line-height:1.5}
@@ -112,7 +112,7 @@ h1 .ac{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-cli
 .et{flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
 .ef{height:100%;border-radius:2px}
 .ec{font-size:9px;color:rgba(255,255,255,.35);width:8px;text-align:right}
-.abn{display:flex;justify-content:space-around;padding:10px 0 4px;border-top:1px solid rgba(255,255,255,.05);margin-top:8px}
+.abn{display:flex;justify-content:space-around;padding:7px 0 2px;border-top:1px solid rgba(255,255,255,.05);margin-top:6px}
 .abt{display:flex;flex-direction:column;align-items:center;gap:3px}
 .abti{font-size:13px;opacity:.4}
 .abti.on{opacity:1}
@@ -178,9 +178,9 @@ h1 .ac{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-cli
 .tog.on .tth{transform:translateX(21px)}
 .spill{font-size:11px;font-weight:700;background:var(--gbg);color:var(--g);padding:3px 8px;border-radius:var(--rpill)}
 /* New pricing layout */
-.prix-wrap{max-width:860px;margin:40px auto 0;display:grid;grid-template-columns:1fr;gap:0;border-radius:24px;overflow:hidden;border:1.5px solid var(--border);box-shadow:0 4px 32px rgba(0,0,0,.06)}
+.prix-wrap{max-width:860px;margin:40px auto 0;display:grid;grid-template-columns:1fr;gap:0;border-radius:24px;overflow:visible;border:1.5px solid var(--border);box-shadow:0 4px 32px rgba(0,0,0,.06)}
 /* Row header */
-.prix-header{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--bg)}
+.prix-header{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--bg);overflow:visible}
 .prix-col-label{padding:20px 24px;border-right:1px solid var(--border)}
 .prix-col-label:last-child{border-right:none}
 .prix-col-label.highlight{background:#f0fdf4}
@@ -193,7 +193,7 @@ h1 .ac{background:linear-gradient(110deg,#16a34a,#34d399);-webkit-background-cli
 .prix-btn-free:hover{border-color:var(--g);color:var(--g)}
 .prix-btn-pro{display:inline-flex;align-items:center;justify-content:center;padding:9px 20px;border-radius:var(--rpill);border:none;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;color:#fff;text-decoration:none;transition:opacity .2s;background:linear-gradient(135deg,#16a34a,#059669);box-shadow:0 3px 12px rgba(22,163,74,.3)}
 .prix-btn-pro:hover{opacity:.88}
-.prix-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#fff;background:linear-gradient(135deg,#16a34a,#059669);border:none;padding:5px 14px;border-radius:var(--rpill);box-shadow:0 3px 10px rgba(22,163,74,.3)}
+.prix-badge{display:none}
 /* Feature rows */
 .prix-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border)}
 .prix-row:hover{background:#fafafa}
@@ -283,7 +283,7 @@ footer{background:#080a0c;padding:64px 6% 32px}
   .mobile-feats li::before{content:'✓';color:var(--g);font-weight:800;flex-shrink:0}
   .mobile-feats li.off{color:var(--border)}
   .mobile-feats li.off::before{content:'×';color:var(--border)}
-  .prix-badge{margin-bottom:6px}
+  .prix-badge{display:none} .crown-badge{top:-18px;right:-8px;font-size:28px}
   .prix-btn-free,.prix-btn-pro{width:100%;justify-content:center;padding:11px}
 }
 @media(max-width:600px){
@@ -391,22 +391,11 @@ footer{background:#080a0c;padding:64px 6% 32px}
           </svg>
         </div>
 
-        <!-- DISCIPLINE SCORE -->
+        <!-- DISCIPLINE SCORE compact -->
         <div class="apsy">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
             <span class="apsyt" style="margin-bottom:0">Score Discipline</span>
-            <span style="font-family:Outfit,sans-serif;font-size:13px;font-weight:800;color:#f59e0b;letter-spacing:-0.02em">68%</span>
-          </div>
-          <!-- Donut progress -->
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-            <svg width="36" height="36" viewBox="0 0 36 36">
-              <circle cx="18" cy="18" r="14" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="4"/>
-              <circle cx="18" cy="18" r="14" fill="none" stroke="#f59e0b" stroke-width="4" stroke-dasharray="60 88" stroke-dashoffset="22" stroke-linecap="round"/>
-            </svg>
-            <div>
-              <div style="font-size:9px;color:rgba(255,255,255,.4);margin-bottom:2px">Basé sur le respect de ton plan</div>
-              <div style="font-size:9px;color:rgba(255,255,255,.55)">7 trades plan respecté · 3 hors plan</div>
-            </div>
+            <span style="font-family:Outfit,sans-serif;font-size:12px;font-weight:800;color:#f59e0b;letter-spacing:-0.02em">68%</span>
           </div>
           <div class="er"><span class="el">Sérénité</span><div class="et"><div class="ef" style="width:75%;background:#34d399"></div></div><span class="ec">6</span></div>
           <div class="er"><span class="el">Hésitation</span><div class="et"><div class="ef" style="width:40%;background:#f59e0b"></div></div><span class="ec">3</span></div>
@@ -491,15 +480,6 @@ footer{background:#080a0c;padding:64px 6% 32px}
 
   <div class="prix-wrap r">
 
-    <!-- Badge flottant au-dessus -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;position:relative">
-      <div></div>
-      <div></div>
-      <div style="display:flex;justify-content:center;padding:10px 24px 0">
-        <span class="prix-badge">⭐ Le plus populaire</span>
-      </div>
-    </div>
-
     <!-- Header row: plans -->
     <div class="prix-header">
       <div class="prix-col-label">
@@ -514,7 +494,7 @@ footer{background:#080a0c;padding:64px 6% 32px}
         <div class="prix-per">Pour toujours</div>
         <a href="https://app.traduly.com" class="prix-btn-free">Commencer →</a>
       </div>
-      <div class="prix-col-label highlight">
+      <div class="prix-col-label highlight" style="position:relative;overflow:visible">
         <div class="prix-plan-name">Premium</div>
         <div class="prix-amount">
           <span class="prix-num" id="pn">5 000</span>
